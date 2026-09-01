@@ -5,11 +5,10 @@
         static void Main(string[] args)
         {
 
-    
 
-            //center.GetBehavior(Kosturso);
+            Arena arena = new Arena();
 
-            NiceCute menu = new NiceCute();
+            NiceCute menu = new NiceCute(arena.Center);
             menu.ShowStart();
 
         }

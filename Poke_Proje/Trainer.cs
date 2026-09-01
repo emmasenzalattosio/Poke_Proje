@@ -49,11 +49,6 @@ namespace Poke_Proje
                 Console.WriteLine(p.ShowStatus());
             }
 
-
-
-
-
-
         }
 
 

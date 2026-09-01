@@ -11,7 +11,7 @@ namespace Poke_Proje
         // need parameter to know who tf we gonna smack up lol
         // When we gonna make two pokemon combat we gonna need to give some shit
         // like pokemon 1 Attacking (pokemon 2)
-        int Attack(Pokemon p2);
+        int Attack(Pokemon p2, Attack attack);
         bool IsDefeated();
     }
 }

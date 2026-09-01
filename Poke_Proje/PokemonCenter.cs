@@ -17,6 +17,10 @@ namespace Poke_Proje
             pokemonList = new List<Pokemon>();
             trainerList = new List<Trainer>();
         }
+        public List<Pokemon> GetAllPokeon()
+        {
+            return pokemonList;
+        }
 
         // method makes sure you add pokeons
         public void AddPokemon(Pokemon pokemon)

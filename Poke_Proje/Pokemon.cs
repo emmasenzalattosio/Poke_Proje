@@ -14,8 +14,9 @@ namespace Poke_Proje
         protected int AttackDamage { get; set; }
         protected int Defense { get; set; }
 
+        public List<Attack> attacks { get; set; } = new List<Attack>();
 
-        public Pokemon(string name, string owner, int level, int hp, int attackDamage, int defense)
+        protected Pokemon(string name, string owner, int level, int hp, int attackDamage, int defense)
         {
             Name = name;
             Owner = owner;
@@ -29,10 +30,21 @@ namespace Poke_Proje
         public abstract string Behavior();
 
         // using the objekt direcly
-        public virtual int Attack(Pokemon p2)
+      
+        public void AddAttack(string name, int damage)
         {
-            Console.WriteLine($"{Name} gonna smack ya ass bihh!");
-            return AttackDamage; 
+            if (attacks.Count >= 4)
+            {
+                Console.WriteLine($"{Name} already knows 4 attacks, chill brudi");
+                return;
+            }
+            attacks.Add(new Attack(name, damage));
+        }
+
+        public int Attack(Pokemon p2, Attack attack)
+        {
+            Console.WriteLine($"{Name} uses {attack.Name} to annihilate {p2.Name}");
+            return attack.Damage;
         }
 
         public void TakeDamage(int damage)
