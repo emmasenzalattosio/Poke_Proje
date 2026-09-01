@@ -18,7 +18,7 @@ namespace Poke_Proje
             trainerList = new List<Trainer>();
         }
 
-        // method MAKES SURE YOU ADD FK pokeons
+        // method makes sure you add pokeons
         public void AddPokemon(Pokemon pokemon)
         {
             pokemonList.Add(pokemon);

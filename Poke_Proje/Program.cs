@@ -5,11 +5,12 @@
         static void Main(string[] args)
         {
 
-            List<Pokemon> poke = new List<Pokemon>();
+    
 
-            poke.
- 
+            //center.GetBehavior(Kosturso);
 
+            NiceCute menu = new NiceCute();
+            menu.ShowStart();
 
         }
     }

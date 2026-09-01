@@ -7,12 +7,12 @@ namespace Poke_Proje
     public abstract class Pokemon : IBattle, IHeal
     {
         public string Name { get; set; }
-        public string Owner { get; set; }
-        public int Level { get; set; }
-        public int HP { get; set; }
-        public int MaxHP { get; set; }
-        public int AttackDamage { get; set; }
-        public int Defense { get; set; }
+        protected string Owner { get; set; }
+        protected int Level { get; set; }
+        protected int HP { get; set; }
+        protected int MaxHP { get; set; }
+        protected int AttackDamage { get; set; }
+        protected int Defense { get; set; }
 
 
         public Pokemon(string name, string owner, int level, int hp, int attackDamage, int defense)
