@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Poke_Proje
 {
-    public abstract class Pokemon : IBattleable, IHeal
+    public abstract class Pokemon : IBattle, IHeal
     {
         public string Name { get; set; }
         public string Owner { get; set; }
@@ -72,7 +72,7 @@ namespace Poke_Proje
 
         public string ShowStatus()
         {
-            return $"{Name} - Owner: {Owner}) - Level: {Level}, HP: {HP}/{MaxHP}, ATK: {AttackDamage}, DEF: {Defense}";
+            return $"{Name} - Owner: {Owner} - Level: {Level}, HP: {HP}/{MaxHP}, ATK: {AttackDamage}, DEF: {Defense}";
         }
     }
 }

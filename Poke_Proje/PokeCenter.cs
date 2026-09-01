@@ -36,7 +36,7 @@ namespace Poke_Proje
         {
             // also self explanatory righttt???
             // goes through all the pokeon list and show status
-            Console.WriteLine(" All Pokemon in the Center ");
+            Console.WriteLine("All Pokemon in the Center: ");
             foreach (Pokemon p in pokemonList)
             {
                 Console.WriteLine(p.ShowStatus());
@@ -46,7 +46,7 @@ namespace Poke_Proje
         public void ShowAllTrainers()
         {
             // you got it?? same concept for trainers
-            Console.WriteLine("All Trainers");
+            Console.WriteLine("All Trainers: ");
             foreach (Trainer t in trainerList)
             {
                 Console.WriteLine(t.name);

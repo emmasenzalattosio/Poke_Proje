@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Poke_Proje
 {
-    public interface IBattleable
+    public interface IBattle
     {
 
         // not void because need to return value
