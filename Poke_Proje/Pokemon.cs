@@ -29,7 +29,7 @@ namespace Poke_Proje
         public abstract string Behavior();
 
         // using the objekt direcly
-        public int Attack(Pokemon p2)
+        public virtual int Attack(Pokemon p2)
         {
             Console.WriteLine($"{Name} gonna smack ya ass bihh!");
             return AttackDamage; 
