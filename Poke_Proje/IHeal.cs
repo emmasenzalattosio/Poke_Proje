@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Poke_Proje
 {
-    public interface IHeal
+    public interface IHeal  
     {
         void Heal();
         string ShowStatus();

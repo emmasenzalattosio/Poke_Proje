@@ -90,47 +90,64 @@ namespace Poke_Proje
 
 
 
+
             switch (selected)
             {
                 case 0:
-                    Console.WriteLine(" -- Choose the type: -- ");
-                    Console.WriteLine("    [1] Chill");
-                    Console.WriteLine("    [2] Dramatic");
-                    Console.WriteLine("    [3] Chaotic");
-                    Console.WriteLine("    [4] Sneaky");
 
-                    char cate = Console.ReadKey().KeyChar;
+                    bool loop = true;
 
-
-                    Console.WriteLine("What pokemon would you like to add??");
-                    string poke = Console.ReadLine()!;
-
-                    switch (cate)
+                    while (loop)
                     {
-                        case '1':
-                            Chill chill = new Chill(poke, "", 0, 0, 0, 0);
-                            Center.AddPokemon(chill);
-                            break;
-                        case '2':
-                            Dramatic drama = new Dramatic(poke, "", 0, 0, 0, 0);
-                            Center.AddPokemon(drama);
-                            break;
-                        case '3':
-                            Chaotic choas = new Chaotic(poke, "", 0, 0, 0, 0);
-                            Center.AddPokemon(choas);
-                            break;
-                        case '4':
-                            Sneaky sssnake = new Sneaky(poke, "", 0, 0, 0, 0);
-                            Center.AddPokemon(sssnake);
-                            break;
 
-                        default:
-                            Console.WriteLine("Invalid type");
-                            break;
+
+                        Console.WriteLine(" -- Choose the type: -- ");
+                        Console.WriteLine("    [1] Chill");
+                        Console.WriteLine("    [2] Dramatic");
+                        Console.WriteLine("    [3] Chaotic");
+                        Console.WriteLine("    [4] Sneaky");
+
+                        char cate = Console.ReadKey().KeyChar;
+
+
+                        Console.WriteLine("What pokemon would you like to add??");
+                        string poke = Console.ReadLine()!;
+
+                        switch (cate)
+                        {
+                            case '1':
+                                Chill chill = new Chill(poke, "", 0, 0, 0, 0);
+                                Center.AddPokemon(chill);
+                                break;
+                            case '2':
+                                Dramatic drama = new Dramatic(poke, "", 0, 0, 0, 0);
+                                Center.AddPokemon(drama);
+                                break;
+                            case '3':
+                                Chaotic choas = new Chaotic(poke, "", 0, 0, 0, 0);
+                                Center.AddPokemon(choas);
+                                break;
+                            case '4':
+                                Sneaky sssnake = new Sneaky(poke, "", 0, 0, 0, 0);
+                                Center.AddPokemon(sssnake);
+                                break;
+
+                            default:
+                                Console.WriteLine("Invalid type");
+                                break;
+                        }
+                        Console.WriteLine("Do you wanna add more?? Y/N");
+                        string select = Console.ReadLine()!;
+
+                        if (select == "N")
+                        {
+                            loop = false;
+                        }
+
+
                     }
-
-
                     break;
+
                 case 1:
                     Center.ShowAllPokemon();
                     break;
@@ -155,6 +172,7 @@ namespace Poke_Proje
 
                     //center.HealPokemon(heal_poke);
                     break;
+
 
 
 

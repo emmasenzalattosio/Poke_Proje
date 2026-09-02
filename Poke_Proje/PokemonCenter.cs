@@ -25,8 +25,11 @@ namespace Poke_Proje
         // method makes sure you add pokeons
         public void AddPokemon(Pokemon pokemon)
         {
-            pokemonList.Add(pokemon);
-            Console.WriteLine($"{pokemon.Name} was added to the Pokemon Center.");
+            
+                pokemonList.Add(pokemon);
+                Console.WriteLine($"{pokemon.Name} was added to the Pokemon Center.");
+
+            
         }
 
         // same thing pokeons
@@ -79,7 +82,7 @@ namespace Poke_Proje
                 Console.WriteLine("Pokemon not found.");
 
             // if match then return match, if no match return shit ok????
-            return found; 
+            return found;
         }
 
         // gets pokeon and give it to trainer, need both parameters from objekts to mitch match
