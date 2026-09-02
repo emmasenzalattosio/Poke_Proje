@@ -42,7 +42,7 @@ namespace Poke_Proje
 
             //level, HP, Attack, Defense
 
-            Dramatic Kosturso = new Dramatic("Kosturso", "Ash", 50, 110, 40, 80);
+            Dramatic Kosturso = new Dramatic("Kosturso", "", 50, 110, 40, 80);
             Kosturso.AddAttack("Dramatischer hieb", 35);
             Kosturso.AddAttack("Josi hating", 15);
             Kosturso.AddAttack("Big foot attack", 40);
@@ -50,92 +50,175 @@ namespace Poke_Proje
             Center.AddPokemon(Kosturso);
             jens.AssignPokemon(Kosturso);
 
-            Dramatic Traumato = new Dramatic("Traumato", "Brock", 45, 70, 50, 40);
-            Traumato.AddAttack("Dramatische Rede", 8);
+            Dramatic Traumato = new Dramatic("Traumato", "", 45, 70, 50, 40);
+            Traumato.AddAttack("Schnarcher", 60);
+            Traumato.AddAttack("Hypnose", 10);
+            Traumato.AddAttack("Ehm Ehm Ehm", 80);
+            Traumato.AddAttack("Hiding", 0);
             Center.AddPokemon(Traumato);
             mohammed.AssignPokemon(Traumato);
 
             Dramatic Wheezing = new Dramatic("Galar Wheewing", "", 64, 100, 60, 65);
+            Wheezing.AddAttack("Raucher Husten", 8);
+            Wheezing.AddAttack("BOOOAAAHH schallwelle", 8);
+            Wheezing.AddAttack("Dauer-Ascher", 8);
+            Wheezing.AddAttack("Alles Scheisse - Konter", 8);
             Center.AddPokemon(Wheezing);
             holger.AssignPokemon(Wheezing);
 
             Dramatic Enamorus = new Dramatic("Enamorus", "", 33, 70, 40, 80);
+            Enamorus.AddAttack("perfektionismus", 0);
+            Enamorus.AddAttack("Schlau meier", 8);
+            Enamorus.AddAttack("Hairline reduzierer", 8);
+            Enamorus.AddAttack("forehead shining", 8);
             Center.AddPokemon(Enamorus);
             fabian.AssignPokemon(Enamorus);
 
             Dramatic Screamtail = new Dramatic("Scream Tail", "", 29, 60, 20, 40);
+            Screamtail.AddAttack("Femboy Falle", 40);
+            Screamtail.AddAttack("choker curse", 50);
+            Screamtail.AddAttack("catwalk", 10);
+            Screamtail.AddAttack("E-Boy kick", 40);
             Center.AddPokemon(Screamtail);
-            marcel.AssignPokemon(Screamtail); //nuttöööööö
+            marcel.AssignPokemon(Screamtail);
 
             Dramatic Mime = new Dramatic("Mr.Mime", "", 37, 90, 70, 35);
+            Mime.AddAttack("Dramatische Rede", 8);
+            Mime.AddAttack("Dramatische Rede", 8);
+            Mime.AddAttack("Dramatische Rede", 8);
+            Mime.AddAttack("Dramatische Rede", 8);
             Center.AddPokemon(Mime);
             felix.AssignPokemon(Mime);
 
             Dramatic Jigglypuff = new Dramatic("Jigglypuff", "", 67, 67, 67, 67);
+            Jigglypuff.AddAttack("ADHD Punch", 15);
+            Jigglypuff.AddAttack("Alko Kick", 35);
+            Jigglypuff.AddAttack("Balkan-Beat-Slam", 60);
+            Jigglypuff.AddAttack("Sprechverbot", 10);
             Center.AddPokemon(Jigglypuff);
             emma.AssignPokemon(Jigglypuff);
 
 
-            Chill Snorlax = new Chill("Snorlax", "", 3, 4, 5, 6);
+            Chill Snorlax = new Chill("Snorlax", "", 100, 150, 100, 100);
+            Snorlax.AddAttack("Protein Overload", 80);
+            Snorlax.AddAttack("Erholung", 0);
+            Snorlax.AddAttack("Führerschein klauen", 15);
+            Snorlax.AddAttack("", 8);
             Center.AddPokemon(Snorlax);
             hasan.AssignPokemon(Snorlax);
 
-            Chill Slaking = new Chill("Slaking", "", 3, 4, 5, 6);
+            Chill Slaking = new Chill("Slaking", "", 72, 120, 90, 90);
+            Slaking.AddAttack("5-Min Terrine", 0);
+            Slaking.AddAttack("Babak sachen halt", 30);
+            Slaking.AddAttack("Beeing there", 40);
+            Slaking.AddAttack("Just a chill guy", 80);
             Center.AddPokemon(Slaking);
             babak.AssignPokemon(Slaking);
 
-            Chill Ghastly = new Chill("Ghastly", "", 3, 4, 5, 6);
+            Chill Ghastly = new Chill("Ghastly", "", 18, 38, 32, 33);
+            Ghastly.AddAttack("Weed Smoker", 8);
+            Ghastly.AddAttack("Roller Tricks", 8);
+            Ghastly.AddAttack("Ankle breaker", 8);
+            Ghastly.AddAttack("Alko Popper", 8);
             Center.AddPokemon(Ghastly);
             sven.AssignPokemon(Ghastly);
 
-            Chill Probopass = new Chill("Probopass", "", 3, 4, 5, 6);
+            Chill Probopass = new Chill("Probopass", "", 44, , 22, 18);
+            Probopass.AddAttack("Figuren Anmalen", 8);
+            Probopass.AddAttack("Ohnmächtig werden", 1000);
+            Probopass.AddAttack("Maschine sein", 8);
+            Probopass.AddAttack("Klausuren genie", 8);
             Center.AddPokemon(Probopass);
             raffael.AssignPokemon(Probopass);
 
-            Chill Squirtle = new Chill("Squirtle", "", 3, 4, 5, 6);
+            Chill Squirtle = new Chill("Squirtle", "", 9999, 9999, 9999, 9999);
+            Squirtle.AddAttack("Yung GOAT", 9999);
+            Squirtle.AddAttack("Big PP", 9999);
+            Squirtle.AddAttack("Domain Expansion: JigaBrain", 9999);
+            Squirtle.AddAttack("Hollow Purple", 9999);
             Center.AddPokemon(Squirtle);
             roman.AssignPokemon(Squirtle);
 
 
 
-            Sneaky Popplio = new Sneaky("Popplio", "", 3, 5, 6, 7);
+            Sneaky Popplio = new Sneaky("Popplio", "", 9, 28, 22, 18);
+            Popplio.AddAttack("Ohm Gelächter", 8);
+            Popplio.AddAttack("Krypto-Mining", 8);
+            Popplio.AddAttack("", 8);
+            Popplio.AddAttack("", 8);
             Center.AddPokemon(Popplio);
             ilia.AssignPokemon(Popplio);
 
-            Sneaky Machamp = new Sneaky("Machoke", "", 3, 5, 6, 7);
+            Sneaky Machamp = new Sneaky("Machoke", "", 69, 100, 150, 150);
+            Machamp.AddAttack("Haarspalterei", 70);
+            Machamp.AddAttack("Alpecin-Schild", 5);
+            Machamp.AddAttack("Friseur-Verweigerung", 0);
+            Machamp.AddAttack("Drei-Haar antenne", 111);
             Center.AddPokemon(Machamp);
             sasha.AssignPokemon(Machamp);
 
-            Sneaky Leafeon = new Sneaky("Leafeon", "", 3, 5, 6, 7);
+            Sneaky Leafeon = new Sneaky("Leafeon", "", 36, 77, 80, 33);
+            Leafeon.AddAttack("Insulin Injektion", 8);
+            Leafeon.AddAttack("Zucker Entzug", 8);
+            Leafeon.AddAttack("Glukose-Schock", 8);
+            Leafeon.AddAttack("Blutzucker-Messung", 8);
             Center.AddPokemon(Leafeon);
             kathy.AssignPokemon(Leafeon);
 
-            Sneaky Meowth = new Sneaky("Meowth", "", 3, 5, 6, 7);
+            Sneaky Meowth = new Sneaky("Meowth", "", 20, 49, 36, 28);
+            Meowth.AddAttack("Krücken-Konter", 8);
+            Meowth.AddAttack("Humpeln", 8);
+            Meowth.AddAttack("Gips-Projektil", 8);
+            Meowth.AddAttack("Ragebait", 8);
             Center.AddPokemon(Meowth);
             azzeddine.AssignPokemon(Meowth);
 
-            Sneaky Arceus = new Sneaky("Arceus", "", 4, 5, 6, 7);
+            Sneaky Arceus = new Sneaky("Arceus", "", 1000, 1000, 1000, 1000);
+            Arceus.AddAttack("PrivatJet-Sturzflug", 8);
+            Arceus.AddAttack("Snack-Schild", 8);
+            Arceus.AddAttack("CEO-Mindset", 8);
+            Arceus.AddAttack("", 8);
             Center.AddPokemon(Arceus);
             aikut.AssignPokemon(Arceus);
 
 
             Chaotic Pantifrost = new Chaotic("Pantifrost", "", 4, 5, 6, 7);
+            Pantifrost.AddAttack("Rosenkohl-Wurf", 8);
+            Pantifrost.AddAttack("Karten Schnibbler", 8);
+            Pantifrost.AddAttack("", 8);
+            Pantifrost.AddAttack("", 8);
             Center.AddPokemon(Pantifrost);
             chris.AssignPokemon(Pantifrost);
 
             Chaotic Bisasam = new Chaotic("Bisasam", "", 4, 5, 6, 7);
+            Bisasam.AddAttack("Babybell-Randale", 8);
+            Bisasam.AddAttack("Dramatische Rede", 8);
+            Bisasam.AddAttack("Dramatische Rede", 8);
+            Bisasam.AddAttack("Dramatische Rede", 8);
             Center.AddPokemon(Bisasam);
             vanessa.AssignPokemon(Bisasam);
 
             Chaotic Dugtrio = new Chaotic("Alolan Dugtrio", "", 4, 5, 6, 7);
+            Dugtrio.AddAttack("Dramatische Rede", 8);
+            Dugtrio.AddAttack("Dramatische Rede", 8);
+            Dugtrio.AddAttack("Dramatische Rede", 8);
+            Dugtrio.AddAttack("Dramatische Rede", 8);
             Center.AddPokemon(Dugtrio);
             josi.AssignPokemon(Dugtrio);
 
             Chaotic Maboyystiff = new Chaotic("Maboyystiff", "", 4, 5, 6, 7);
+            Maboyystiff.AddAttack("Dramatische Rede", 8);
+            Maboyystiff.AddAttack("Dramatische Rede", 8);
+            Maboyystiff.AddAttack("Dramatische Rede", 8);
+            Maboyystiff.AddAttack("Dramatische Rede", 8);
             Center.AddPokemon(Maboyystiff);
             daniel.AssignPokemon(Maboyystiff);
 
             Chaotic Swalot = new Chaotic("Swalot", "", 3, 4, 5, 6);
+            Swalot.AddAttack("Dramatische Rede", 8);
+            Swalot.AddAttack("Dramatische Rede", 8);
+            Swalot.AddAttack("Dramatische Rede", 8);
+            Swalot.AddAttack("Dramatische Rede", 8);
             Center.AddPokemon(Swalot);
             aman.AssignPokemon(Swalot);
 
