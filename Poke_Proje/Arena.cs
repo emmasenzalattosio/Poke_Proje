@@ -185,40 +185,40 @@ namespace Poke_Proje
             Chaotic Pantifrost = new Chaotic("Pantifrost", "", 4, 5, 6, 7);
             Pantifrost.AddAttack("Rosenkohl-Wurf", 8);
             Pantifrost.AddAttack("Karten Schnibbler", 8);
-            Pantifrost.AddAttack("", 8);
+            Pantifrost.AddAttack("Booster-Öffnen", 8);
             Pantifrost.AddAttack("", 8);
             Center.AddPokemon(Pantifrost);
             chris.AssignPokemon(Pantifrost);
 
             Chaotic Bisasam = new Chaotic("Bisasam", "", 4, 5, 6, 7);
-            Bisasam.AddAttack("Babybell-Randale", 8);
-            Bisasam.AddAttack("Dramatische Rede", 8);
-            Bisasam.AddAttack("Dramatische Rede", 8);
-            Bisasam.AddAttack("Dramatische Rede", 8);
+            Bisasam.AddAttack("Babybel-Randale", 8);
+            Bisasam.AddAttack("Käserad-Walzer", 8);
+            Bisasam.AddAttack("Locken-Verhedderung", 8);
+            Bisasam.AddAttack("Hasan-Mobben", 8);
             Center.AddPokemon(Bisasam);
             vanessa.AssignPokemon(Bisasam);
 
             Chaotic Dugtrio = new Chaotic("Alolan Dugtrio", "", 4, 5, 6, 7);
-            Dugtrio.AddAttack("Dramatische Rede", 8);
-            Dugtrio.AddAttack("Dramatische Rede", 8);
-            Dugtrio.AddAttack("Dramatische Rede", 8);
-            Dugtrio.AddAttack("Dramatische Rede", 8);
+            Dugtrio.AddAttack("Hormon-Overflow", 8);
+            Dugtrio.AddAttack("Linux-Vortrag", 8);
+            Dugtrio.AddAttack("Drunken-Fist", 8);
+            Dugtrio.AddAttack("Drug-Shot", 8);
             Center.AddPokemon(Dugtrio);
             josi.AssignPokemon(Dugtrio);
 
             Chaotic Maboyystiff = new Chaotic("Maboyystiff", "", 4, 5, 6, 7);
-            Maboyystiff.AddAttack("Dramatische Rede", 8);
-            Maboyystiff.AddAttack("Dramatische Rede", 8);
-            Maboyystiff.AddAttack("Dramatische Rede", 8);
-            Maboyystiff.AddAttack("Dramatische Rede", 8);
+            Maboyystiff.AddAttack("Fötzen-Uhr", 8);
+            Maboyystiff.AddAttack("Dädsch-Dämpfer", 8);
+            Maboyystiff.AddAttack("„Mahrgwardt, dor Gaffee griescht!", 8);
+            Maboyystiff.AddAttack("Eierschecken-Energie", 8);
             Center.AddPokemon(Maboyystiff);
             daniel.AssignPokemon(Maboyystiff);
 
             Chaotic Swalot = new Chaotic("Swalot", "", 3, 4, 5, 6);
-            Swalot.AddAttack("Dramatische Rede", 8);
-            Swalot.AddAttack("Dramatische Rede", 8);
-            Swalot.AddAttack("Dramatische Rede", 8);
-            Swalot.AddAttack("Dramatische Rede", 8);
+            Swalot.AddAttack("", 8);
+            Swalot.AddAttack("", 8);
+            Swalot.AddAttack("", 8);
+            Swalot.AddAttack("", 8);
             Center.AddPokemon(Swalot);
             aman.AssignPokemon(Swalot);
 
