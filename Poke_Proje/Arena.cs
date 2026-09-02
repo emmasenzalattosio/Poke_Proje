@@ -65,7 +65,7 @@ namespace Poke_Proje
 
             Dramatic Screamtail = new Dramatic("Scream Tail", "", 29, 60, 20, 40);
             Center.AddPokemon(Screamtail);
-            marcel.AssignPokemon(Screamtail); fdgv
+            marcel.AssignPokemon(Screamtail); //nuttöööööö
 
             Dramatic Mime = new Dramatic("Mr.Mime", "", 37, 90, 70, 35);
             Center.AddPokemon(Mime);
