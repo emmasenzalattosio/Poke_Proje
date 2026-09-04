@@ -6,7 +6,7 @@ namespace Poke_Proje
 {
     public class Dramatic : Pokemon
     {
-        public Dramatic(string name, string owner, int level, int hp, int attack, int defense) : base (name, owner, level, hp, attack, defense)
+        public Dramatic(string name, string trainer, int level, int hp, int attack, int defense) : base (name, trainer, level, hp, attack, defense)
         {
    
         }

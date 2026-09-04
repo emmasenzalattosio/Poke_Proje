@@ -6,7 +6,7 @@ namespace Poke_Proje
 {
     public class Sneaky : Pokemon
     {
-        public Sneaky(string name, string owner, int level, int hp, int attackdamage, int defense) : base(name, owner, level, hp,  attackdamage, defense)
+        public Sneaky(string name, string trainer, int level, int hp, int attackdamage, int defense) : base(name, trainer, level, hp,  attackdamage, defense)
         {
 
         }

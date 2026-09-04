@@ -20,6 +20,7 @@ namespace Poke_Proje
         public List<Pokemon> GetAllPokeon()
         {
             return pokemonList;
+            
         }
 
         // method makes sure you add pokeons
@@ -36,14 +37,15 @@ namespace Poke_Proje
         public void AddTrainer(Trainer trainer)
         {
             trainerList.Add(trainer);
-            Console.WriteLine($"Trainer {trainer.name} was added.");
+            Console.WriteLine($"Trainer {trainer.Name} was added.");
+            Console.Clear();
         }
 
         public void ShowAllPokemon()
         {
             // also self explanatory righttt???
             // goes through all the pokeon list and show status
-            Console.WriteLine("All Pokemon in the Center: ");
+            Console.WriteLine("All Pokemon in the Center: \n");
             foreach (Pokemon p in pokemonList)
             {
                 Console.WriteLine(p.ShowStatus());
@@ -52,11 +54,12 @@ namespace Poke_Proje
 
         public void ShowAllTrainers()
         {
+            Console.Clear();
             // you got it?? same concept for trainers
             Console.WriteLine("All Trainers: ");
             foreach (Trainer t in trainerList)
             {
-                Console.WriteLine(t.name);
+                Console.WriteLine(t.Name);
             }
         }
 
@@ -73,13 +76,28 @@ namespace Poke_Proje
                 if (p.Name.ToLower() == name.ToLower())
                 {
                     found = p;
+                    
+
                     break; // if found exit loop so no need to check everything
                 }
             }
-            // no match?? your prob bihh
+            
+            
 
-            if (found == null)
-                Console.WriteLine("Pokemon not found.");
+            if (found != null)
+            {
+                Console.ForegroundColor = ConsoleColor.Green;
+                Console.WriteLine($"\nGefunden {found.Name}");
+                Console.ResetColor();
+                Console.WriteLine(found.ShowStatus());
+            }
+
+            else
+            {
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.WriteLine("\nPokemon nicht gefunden");
+                Console.ResetColor();
+            }
 
             // if match then return match, if no match return shit ok????
             return found;

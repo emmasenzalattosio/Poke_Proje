@@ -7,7 +7,7 @@ namespace Poke_Proje
     public abstract class Pokemon : IBattle, IHeal
     {
         public string Name { get; set; }
-        protected string Owner { get; set; }
+        protected string Trainer { get; set; }
         protected int Level { get; set; }
         protected int HP { get; set; }
         protected int MaxHP { get; set; }
@@ -16,10 +16,10 @@ namespace Poke_Proje
 
         public List<Attack> attacks { get; set; } = new List<Attack>();
 
-        protected Pokemon(string name, string owner, int level, int hp, int attackDamage, int defense)
+        protected Pokemon(string name, string trainer, int level, int hp, int attackDamage, int defense)
         {
             Name = name;
-            Owner = owner;
+            Trainer = trainer;
             Level = level;
             HP = hp;
             MaxHP = hp;
@@ -43,6 +43,7 @@ namespace Poke_Proje
 
         public int Attack(Pokemon p2, Attack attack)
         {
+            Console.WriteLine();
             Console.WriteLine($"{Name} uses {attack.Name} to annihilate {p2.Name}");
             return attack.Damage;
         }
@@ -57,7 +58,7 @@ namespace Poke_Proje
             // this subtracts damage from hp pretty understandable right?????
             HP -= damage;
             if (HP < 0) HP = 0; // no negative hp bihh
-
+            
             Console.WriteLine($"{Name} got {damage} damage lol - New HP: {HP}");
         }
 
@@ -84,7 +85,9 @@ namespace Poke_Proje
 
         public string ShowStatus()
         {
-            return $"{Name} - Owner: {Owner} - Level: {Level}, HP: {HP}/{MaxHP}, ATK: {AttackDamage}, DEF: {Defense}";
+            
+            return $"{Name} - {Trainer} - Lvl: [{Level}], HP: {HP}/{MaxHP}, ATK: {AttackDamage}, DEF: {Defense}\n";
+            
         }
     }
 }

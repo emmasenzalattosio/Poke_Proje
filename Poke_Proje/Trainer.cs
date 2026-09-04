@@ -6,7 +6,7 @@ namespace Poke_Proje
 {
     public class Trainer
     {
-        public string name { get; set; }
+        public string Name;
         public List<Pokemon> ass_poke { get; set; }
 
         // constructor
@@ -14,7 +14,7 @@ namespace Poke_Proje
 
         public Trainer(string name)
         {
-            this.name = name;
+            this.Name = name;
             this.ass_poke = new List<Pokemon>();
         }
 
@@ -25,29 +25,38 @@ namespace Poke_Proje
             // wanna add more?? ya can´t lol
             if (ass_poke.Count >= 5)
             {
-                Console.WriteLine($"{name} too many pokes, chill mal brudi");
+                Console.WriteLine($"{Name} too many pokes, chill mal brudi");
                 return;
             }
 
             // if not enough poke and gg wp add the new monster
             ass_poke.Add(pokemon);
-            Console.WriteLine($"{pokemon.Name} got this b ass trainer: {name}.");
+            Console.WriteLine($"{pokemon.Name} got this b ass trainer: {Name}.");
+            Console.Clear();
         }
 
         public void ShowPokemon()
         {
             // really?? do I need to explain this?? wthhhh
-            Console.WriteLine($"Trainer {name}: Pokemon ");
+            Console.WriteLine($"Trainer {Name}: Pokemon ");
             if (ass_poke.Count == 0)
             {
                 Console.WriteLine("No Pokemon assigned yet.");
+                Console.WriteLine("\nTaste drücken um wieder ins hauptmenu zu kommen");
+                Console.ReadKey(true);
                 return;
             }
-
+            
             foreach (Pokemon p in ass_poke)
             {
+
+                
                 Console.WriteLine(p.ShowStatus());
+                Console.WriteLine();
+                
             }
+            Console.WriteLine("Taste drücken um wieder ins hauptmenu zu kommen");
+            Console.ReadKey(true);
 
         }
 

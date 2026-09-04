@@ -7,7 +7,7 @@ namespace Poke_Proje
     public class Chaotic : Pokemon, IBattle, IHeal
     {
 
-        public Chaotic(string name, string owner, int level, int hp, int attack, int defense) : base(name, owner, level, hp, attack, defense) { }
+        public Chaotic(string name, string trainer, int level, int hp, int attack, int defense) : base(name, trainer, level, hp, attack, defense) { }
     
         public override string Behavior()
         {
