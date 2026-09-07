@@ -77,7 +77,6 @@ namespace Poke_Proje
                 {
                     found = p;
                     
-
                     break; // if found exit loop so no need to check everything
                 }
             }
@@ -120,6 +119,25 @@ namespace Poke_Proje
             pokemon.Heal();
         }
 
+        public void HealPokemon(string name)
+        {
+            Pokemon found = SearchPokemon(name);
+            if (found != null)
+            {
+                found.Heal();
+            }
+        }
+
+        // remove pokeon from center 
+        public bool RemovePokemon(Pokemon pokemon)
+        {
+            if (pokemonList.Contains(pokemon))
+            {
+                pokemonList.Remove(pokemon);
+                return true;
+            }
+            return false;
+        }
 
     }
 }

@@ -7,6 +7,7 @@ namespace Poke_Proje
     public class NiceCute
     {
         private PokemonCenter Center;
+        private Arena BattleArena;
         public NiceCute(PokemonCenter center)
         {
             Center = center;
@@ -18,7 +19,7 @@ namespace Poke_Proje
 
             string[] options = new string[]
             {
-            
+
                 "Catch Poke",
                 "ShowPoke",
                 "SearchPoke",
@@ -192,6 +193,9 @@ namespace Poke_Proje
                         Console.WriteLine("What pokemon yould you like to heal??");
                         string heal_poke = Console.ReadLine()!;
 
+                        Center.HealPokemon(heal_poke);
+                        Console.WriteLine("\nTaste drücken um wieder zurück zum hauptmenu zu kommen");
+                        Console.ReadKey(true);
                         //Center.HealPokemon(heal_poke);
                         break;
 
@@ -202,5 +206,53 @@ namespace Poke_Proje
 
         }
 
+        private void StartTeamRocketEvent(Trainer player)
+        {
+            Console.Clear();
+            TeamRocket rocket = new TeamRocket("Miss & Mister W");
+
+            rocket.StealPokemon(player);
+
+            // remove stolen pokeon from center too cuz they gone fr fr
+            foreach (Pokemon p in rocket.ass_poke)
+            {
+                Center.RemovePokemon(p);
+            }
+
+            if (player.HasPokemon())
+            {
+                Console.WriteLine("\nBack to Menü");
+                Console.ReadKey(true);
+                return;
+            }
+
+            rocket.AskToBecomeRealTrainer();
+            char choice = Console.ReadKey(true).KeyChar;
+
+            if (char.ToLower(choice) == 'y')
+            {
+                Console.Clear();
+                Console.ForegroundColor = ConsoleColor.Yellow;
+                Console.WriteLine("Team Rocket: \"Aight, here take this weak ass pokeon and train up.\"");
+                Console.ResetColor();
+
+                Chill magikarp = new Chill("[Magikarp]", player.Name, 1, 20, 5, 5);
+                magikarp.AddAttack("Splash", 0);
+                Center.AddPokemon(magikarp);
+                Center.AssignPokeon(magikarp, player);
+
+                Console.WriteLine("You received a Magikarp. Good luck becoming a real trainer lol");
+            }
+            else
+            {
+                Console.ForegroundColor = ConsoleColor.Magenta;
+                Console.WriteLine("\nTeam Rocket: \"Yeah thats what we thought, coward lmao\"");
+                Console.WriteLine("*Team Rocket blast off again*");
+                Console.ResetColor();
+            }
+
+            Console.WriteLine("\nTaste drücken um wieder zurück zum hauptmenu zu kommen");
+            Console.ReadKey(true);
+        }
     }
 }

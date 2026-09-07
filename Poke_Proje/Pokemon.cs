@@ -30,7 +30,13 @@ namespace Poke_Proje
         public abstract string Behavior();
 
         // using the objekt direcly
-      
+
+        public void SetTrainer(string trainer)
+        {
+            Trainer = trainer;
+        }
+
+
         public void AddAttack(string name, int damage)
         {
             if (attacks.Count >= 4)

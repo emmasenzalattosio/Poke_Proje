@@ -28,6 +28,7 @@ namespace Poke_Proje
                 Console.WriteLine($"{Name} too many pokes, chill mal brudi");
                 return;
             }
+            pokemon.SetTrainer(Name);
 
             // if not enough poke and gg wp add the new monster
             ass_poke.Add(pokemon);
@@ -46,20 +47,28 @@ namespace Poke_Proje
                 Console.ReadKey(true);
                 return;
             }
-            
+
             foreach (Pokemon p in ass_poke)
             {
 
-                
+
                 Console.WriteLine(p.ShowStatus());
                 Console.WriteLine();
-                
+
             }
             Console.WriteLine("Taste drücken um wieder ins hauptmenu zu kommen");
             Console.ReadKey(true);
 
         }
+        public void ClearTeam()
+        {
+            ass_poke.Clear();
+        }
 
+        public bool HasPokemon()
+        {
+            return ass_poke.Count > 0;
+        }
 
     }
 }
