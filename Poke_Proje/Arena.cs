@@ -247,7 +247,7 @@ namespace Poke_Proje
             Chaotic Maboyystiff = new Chaotic("[Maboyystiff]", "Trainer: [Daniel]", 60, 100, 35, 75);
             Maboyystiff.AddAttack("Fötzen-Uhr", 75);
             Maboyystiff.AddAttack("Dädsch-Dämpfer", 45);
-            Maboyystiff.AddAttack("„Mahrgwardt, dor Gaffee griescht!"", 100);
+            Maboyystiff.AddAttack("„Mahrgwardt, dor Gaffee griescht!", 100);
             Maboyystiff.AddAttack("Eierschecken-Energie", 25);
             Center.AddPokemon(Maboyystiff);
             Daniel.AssignPokemon(Maboyystiff);

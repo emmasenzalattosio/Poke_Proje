@@ -33,7 +33,7 @@ namespace Poke_Proje
             }
 
             pokemonList.Add(pokemon);
-            Console.WriteLine($"{pokemon.Name} was added to the Pokemon Center.");
+            
         }
 
         public void AddTrainer(Trainer trainer)

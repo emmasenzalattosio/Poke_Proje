@@ -64,9 +64,7 @@ namespace Poke_Proje
             }
 
             pokemon.SetTrainer(Name);
-            ass_poke.Add(pokemon);
-            Console.WriteLine($"{pokemon.Name} got this b ass trainer: {Name}.");
-            Console.WriteLine($"Current team: {ass_poke.Count}/5");
+            ass_poke.Add(pokemon);           
             Console.WriteLine();
         }
 
