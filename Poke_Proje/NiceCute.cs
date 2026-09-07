@@ -63,7 +63,7 @@ namespace Poke_Proje
 
                 for (int i = 0; i < trainers.Count; i++)
                 {
-                    ConsoleUI.WriteCenteredHighlighted($"{trainers[i].Name} Chan", i == selectedIndex);
+                    ConsoleUI.WriteCenteredHighlighted($"{trainers[i].Name} - Chan", i == selectedIndex);
                 }
 
                 ConsoleKey key = Console.ReadKey(true).Key;
@@ -199,16 +199,16 @@ namespace Poke_Proje
 
 
             Console.ForegroundColor = ConsoleColor.Red;
-            ConsoleUI.DrawCenteredFrameWithTitle(@"                                                                █▀▀▀▀▀▄   ▄▀▀▀▀▄  █▀▀█ ▀▀█  ▄▀▀▀▀▀█  ▄▀▀▀▀▄▄▀▀▄   ▄▀▀▀▀▄   ▄▀▀▀▀▄ 
+            
+
+
+            Console.ResetColor();
+            ConsoleUI.WriteCentered(@"                                                                █▀▀▀▀▀▄   ▄▀▀▀▀▄  █▀▀█ ▀▀█  ▄▀▀▀▀▀█  ▄▀▀▀▀▄▄▀▀▄   ▄▀▀▀▀▄   ▄▀▀▀▀▄ 
                                                                 █      █ █      █ █  ▓   █ █      ▓ █          █ █      █ █      █
                                                                 █  █▀  █ █  █▀  █ █   ▄▄▀  █  █▀▀▀▀ █  ░   ░   █ █  █▀  █ █  ░   █
                                                                 ▓  ▀▀ ▄▀ ▓  █▄  █ ▓  ▄  ▀▄ ▓  █▄█▄▄ ▓  ░   ░   █ ▓  █▄  █ ▓  ░   █
                                                                 ▒  █▀▀   ▒  ▀▀  ▒ ▒  █   ▒ ▒      ▒ ▒  ▒   ▒   ▓ ▒  ▀▀  ▒ ▒  ▒   ▓
-                                                                ░▄▄█      ▀▄▄▄▄▀  ░▄▄█ ▄▄░  ▀▄▄▄▄▄█ ▒▄▄▓ ▄▄▓ ▄▄▒  ▀▄▄▄▄▀  ▒▄▄▓ ▄▄▒",60, ConsoleColor.Red);
-
-
-        
-            //ConsoleUI.DrawBottomFrame(60, ConsoleColor.Red);
+                                                                ░▄▄█      ▀▄▄▄▄▀  ░▄▄█ ▄▄░  ▀▄▄▄▄▄█ ▒▄▄▓ ▄▄▓ ▄▄▒  ▀▄▄▄▄▀  ▒▄▄▓ ▄▄▒");
            
         }
 
