@@ -1,6 +1,6 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
-using System.Text;
+using System.Linq;
 
 namespace Poke_Proje
 {
@@ -8,9 +8,6 @@ namespace Poke_Proje
     {
         public string Name;
         public List<Pokemon> ass_poke { get; set; }
-
-        // constructor
-        // btw made everything public because I am too lazy to write the getter and setter for long >:C
 
         public Trainer(string name)
         {
@@ -20,46 +17,90 @@ namespace Poke_Proje
 
         public void AssignPokemon(Pokemon pokemon)
         {
-            // pretty self explanatory right??
-            // check if trainer has enough pokemon
-            // wanna add more?? ya can´t lol
-            if (ass_poke.Count >= 5)
+            if (pokemon == null)
             {
-                Console.WriteLine($"{Name} too many pokes, chill mal brudi");
+                Console.WriteLine("No Pokémon was given to the trainer.");
                 return;
             }
-            pokemon.SetTrainer(Name);
 
-            // if not enough poke and gg wp add the new monster
+            if (ass_poke.Count >= 5)
+            {
+                Console.WriteLine($"{Name} already has too many pokes, chill mal brudi");
+                return;
+            }
+
+            pokemon.SetTrainer(Name);
             ass_poke.Add(pokemon);
             Console.WriteLine($"{pokemon.Name} got this b ass trainer: {Name}.");
-            Console.Clear();
+            Console.WriteLine($"Current team: {ass_poke.Count}/5");
+            Console.WriteLine();
         }
 
         public void ShowPokemon()
         {
-            // really?? do I need to explain this?? wthhhh
-            Console.WriteLine($"Trainer {Name}: Pokemon ");
+            Console.Clear();
+            Console.WriteLine($"=== {Name}'s Pokémon ===");
+
             if (ass_poke.Count == 0)
             {
-                Console.WriteLine("No Pokemon assigned yet.");
-                Console.WriteLine("\nTaste drücken um wieder ins hauptmenu zu kommen");
+                Console.WriteLine("No Pokémon assigned yet.");
+                Console.WriteLine("\nPress any key to return to the menu...");
                 Console.ReadKey(true);
                 return;
             }
 
             foreach (Pokemon p in ass_poke)
             {
-
-
                 Console.WriteLine(p.ShowStatus());
                 Console.WriteLine();
-
             }
-            Console.WriteLine("Taste drücken um wieder ins hauptmenu zu kommen");
-            Console.ReadKey(true);
 
+            Console.WriteLine("Press any key to return to the menu...");
+            Console.ReadKey(true);
         }
+
+        public void HealPokemon(Pokemon pokemon)
+        {
+            if (pokemon == null)
+            {
+                Console.WriteLine("No Pokémon was selected for healing.");
+                return;
+            }
+
+            pokemon.Heal();
+            Console.WriteLine($"{Name} healed {pokemon.Name}.");
+            Console.WriteLine($"HP: {pokemon.GetCurrentHp()}/{pokemon.GetMaxHp()}");
+        }
+
+        public void HealPokemon(string name)
+        {
+            Pokemon? pokemon = ass_poke.FirstOrDefault(p => p.Name.Equals(name, StringComparison.OrdinalIgnoreCase));
+
+            if (pokemon == null)
+            {
+                Console.WriteLine($"{name} is not in {Name}'s team.");
+                return;
+            }
+
+            HealPokemon(pokemon);
+        }
+
+        public void HealTeam()
+        {
+            if (ass_poke.Count == 0)
+            {
+                Console.WriteLine($"{Name} has no Pokémon to heal.");
+                return;
+            }
+
+            Console.WriteLine($"{Name} is healing the whole team...");
+            foreach (Pokemon p in ass_poke)
+            {
+                p.Heal();
+                Console.WriteLine($"{p.Name}: {p.GetCurrentHp()}/{p.GetMaxHp()}");
+            }
+        }
+
         public void ClearTeam()
         {
             ass_poke.Clear();
@@ -69,6 +110,5 @@ namespace Poke_Proje
         {
             return ass_poke.Count > 0;
         }
-
     }
 }

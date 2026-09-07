@@ -1,6 +1,5 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
-using System.Text;
 
 namespace Poke_Proje
 {
@@ -29,13 +28,20 @@ namespace Poke_Proje
 
         public abstract string Behavior();
 
-        // using the objekt direcly
-
         public void SetTrainer(string trainer)
         {
             Trainer = trainer;
         }
 
+        public int GetCurrentHp()
+        {
+            return HP;
+        }
+
+        public int GetMaxHp()
+        {
+            return MaxHP;
+        }
 
         public void AddAttack(string name, int damage)
         {
@@ -50,50 +56,40 @@ namespace Poke_Proje
         public int Attack(Pokemon p2, Attack attack)
         {
             Console.WriteLine();
-            Console.WriteLine($"{Name} uses {attack.Name} to annihilate {p2.Name}");
+            Console.WriteLine($"{Name} uses {attack.Name} on {p2.Name}!");
             return attack.Damage;
         }
 
         public void TakeDamage(int damage)
         {
-            // substracting the damage from defense
-            // like you attack 1 million and p2 has 2millions then you did just 1million dmg okk????
-            damage -= Defense;  
+            damage -= Defense;
             if (damage < 0) damage = 0;
 
-            // this subtracts damage from hp pretty understandable right?????
             HP -= damage;
-            if (HP < 0) HP = 0; // no negative hp bihh
-            
-            Console.WriteLine($"{Name} got {damage} damage lol - New HP: {HP}");
+            if (HP < 0) HP = 0;
+
+            Console.WriteLine($"{Name} took {damage} damage. Current HP: {HP}/{MaxHP}");
         }
 
-
-        // if hp more than 0 then gg we rollin
-        // if hp same or less 0 LOSEEERRR LOLOLOL LOOSTTT
         public bool IsDefeated()
         {
             return HP <= 0;
-
-            // could´ve written this bs with if else but who has the time for it
-            // actually took me more time to comment this shi 
-
-            // if( HP <= 0) return true
-            // else return false
         }
 
         public void Heal()
         {
-            // setting current hp to full hp
             HP = MaxHP;
             Console.WriteLine($"{Name} has been fully healed! HP: {HP}/{MaxHP}");
         }
 
         public string ShowStatus()
         {
-            
             return $"{Name} - {Trainer} - Lvl: [{Level}], HP: {HP}/{MaxHP}, ATK: {AttackDamage}, DEF: {Defense}\n";
-            
+        }
+
+        public string GetBattleStatus()
+        {
+            return $"{Name}: HP {HP}/{MaxHP}";
         }
     }
 }

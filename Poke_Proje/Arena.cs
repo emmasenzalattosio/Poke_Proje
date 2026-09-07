@@ -1,6 +1,5 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
-using System.Text;
 
 namespace Poke_Proje
 {
@@ -11,10 +10,7 @@ namespace Poke_Proje
 
         public Arena()
         {
-
             Center = new PokemonCenter();
-
-
 
             Trainer Holger = new Trainer("Holger");
             Center.AddTrainer(Holger);
@@ -85,9 +81,7 @@ namespace Poke_Proje
             Trainer Aikut = new Trainer("Aykut");
             Center.AddTrainer(Aikut);
 
-
             Console.Clear();
-            //level, HP, Attack, Defense
 
             Dramatic Kosturso = new Dramatic("[Kosturso]", "Trainer: [Jens]", 50, 110, 40, 80);
             Kosturso.AddAttack("Dramatischer hieb", 35);
@@ -145,7 +139,6 @@ namespace Poke_Proje
             Center.AddPokemon(Jigglypuff);
             Emma.AssignPokemon(Jigglypuff);
 
-
             Chill Snorlax = new Chill("[Snorlax]", "Trainer: [Hasan]", 100, 150, 100, 100);
             Snorlax.AddAttack("Protein Overload", 80);
             Snorlax.AddAttack("Erholung", 0);
@@ -185,8 +178,6 @@ namespace Poke_Proje
             Squirtle.AddAttack("Hollow Purple", 9999);
             Center.AddPokemon(Squirtle);
             Roman.AssignPokemon(Squirtle);
-
-
 
             Sneaky Popplio = new Sneaky("[Popplio]", "Trainer: [Ilia] ", 9, 28, 22, 18);
             Popplio.AddAttack("Ohm Gelächter", 40);
@@ -228,7 +219,6 @@ namespace Poke_Proje
             Center.AddPokemon(Arceus);
             Aikut.AssignPokemon(Arceus);
 
-
             Chaotic Pantifrost = new Chaotic("[Pantifrost]", "Trainer: [Pantifrost]", 39, 78, 69, 30);
             Pantifrost.AddAttack("Rosenkohl-Wurf", 60);
             Pantifrost.AddAttack("Foil-Flex", 40);
@@ -256,7 +246,7 @@ namespace Poke_Proje
             Chaotic Maboyystiff = new Chaotic("[Maboyystiff]", "Trainer: [Daniel]", 60, 100, 35, 75);
             Maboyystiff.AddAttack("Fötzen-Uhr", 75);
             Maboyystiff.AddAttack("Dädsch-Dämpfer", 45);
-            Maboyystiff.AddAttack("„Mahrgwardt, dor Gaffee griescht!", 100);
+            Maboyystiff.AddAttack("„Mahrgwardt, dor Gaffee griescht!"", 100);
             Maboyystiff.AddAttack("Eierschecken-Energie", 25);
             Center.AddPokemon(Maboyystiff);
             Daniel.AssignPokemon(Maboyystiff);
@@ -268,95 +258,121 @@ namespace Poke_Proje
             Swalot.AddAttack("Strahlende-Persöhnlichkeit", 100);
             Center.AddPokemon(Swalot);
             Aman.AssignPokemon(Swalot);
-
-            
         }
 
-        //Loop that keeps going till the stupid user inserts a valid numb
         private int ReadNumber(int min, int max)
         {
-            int result; // variable to store number inserted
+            int result;
 
             while (true)
             {
                 Console.Write($"Enter a number ({min}-{max}): ");
-                // Parse - converts text in numb (stores 3 in result and gets true)
-                // Checks if number is between range 
                 if (int.TryParse(Console.ReadLine(), out result) && result >= min && result <= max)
-                    return result; // stops the loop in case eingabe = good
+                    return result;
 
                 Console.WriteLine("Invalid, try again.");
             }
         }
 
-        public void StartBattle()
+        public void StartBattle(Trainer trainer)
         {
             List<Pokemon> all = Center.GetAllPokeon();
-            Console.Clear();
-            Console.WriteLine("Choose your pokeon biatch!!");
-            for (int i = 0; i < all.Count; i++)
+
+            if (all.Count < 2)
             {
-                Console.WriteLine($"[{i + 1}] {all[i].Name}");
+                Console.WriteLine("Not enough Pokémon in the center to start a battle.");
+                return;
             }
 
-            //Calling the chosenumb method and goes through all the pokeon list counting
-            //So in ausgabe gonna count all the available 
-            // - 1 because list (like arrays) start from pos 0
-            Pokemon pokeon = all[ReadNumber(1, all.Count) - 1];
-            Console.Clear();
-            Console.WriteLine("Choose pokeon you wanna fight ass");
-            for (int i = 0; i < all.Count; i++)
-            {
-                Console.WriteLine($"{i + 1} {all[i].Name}");
+            List<Pokemon> playerOptions = trainer != null && trainer.ass_poke.Count > 0 ? trainer.ass_poke : all;
 
+            Console.Clear();
+            Console.WriteLine("=== Choose your fighter ===");
+            for (int i = 0; i < playerOptions.Count; i++)
+            {
+                Console.WriteLine($"[{i + 1}] {playerOptions[i].Name} - HP: {playerOptions[i].GetCurrentHp()}/{playerOptions[i].GetMaxHp()}");
             }
 
-            Pokemon enemy_pokeon = all[ReadNumber(1, all.Count) - 1];
-            Console.WriteLine($"\n{pokeon.Name} VS {enemy_pokeon.Name}!\n");
+            Pokemon fighter = playerOptions[ReadNumber(1, playerOptions.Count) - 1];
 
-            Fight(pokeon, enemy_pokeon);
+            List<Pokemon> enemyOptions = all.FindAll(p => p != fighter);
+            Console.Clear();
+            Console.WriteLine("=== Choose your enemy ===");
+            for (int i = 0; i < enemyOptions.Count; i++)
+            {
+                Console.WriteLine($"[{i + 1}] {enemyOptions[i].Name} - HP: {enemyOptions[i].GetCurrentHp()}/{enemyOptions[i].GetMaxHp()}");
+            }
 
+            Pokemon enemy = enemyOptions[ReadNumber(1, enemyOptions.Count) - 1];
+            Console.WriteLine($"\n{fighter.Name} VS {enemy.Name}!\n");
+
+            Fight(fighter, enemy);
         }
-
 
         private void Fight(Pokemon me, Pokemon enemy)
         {
             Console.Clear();
+            Console.WriteLine("=== BATTLE START ===");
+            Console.WriteLine($"{me.Name} VS {enemy.Name}");
+            Console.WriteLine($"{me.GetBattleStatus()}");
+            Console.WriteLine($"{enemy.GetBattleStatus()}\n");
+
+            int round = 1;
+
             while (!me.IsDefeated() && !enemy.IsDefeated())
             {
-                Console.ForegroundColor = ConsoleColor.Green;
-                Console.WriteLine($"\n{me.Name} availoble attacko:\n");
-                Console.ResetColor();
+                Console.WriteLine($"--- Round {round} ---");
+                Console.WriteLine($"{me.Name}: HP {me.GetCurrentHp()}/{me.GetMaxHp()}");
+                Console.WriteLine($"{enemy.Name}: HP {enemy.GetCurrentHp()}/{enemy.GetMaxHp()}");
+                Console.WriteLine("Choose your attack:");
+
                 for (int i = 0; i < me.attacks.Count; i++)
                 {
-                    Console.WriteLine($"[{i + 1}] {me.attacks[i].Name} [" +
-                        $"{me.attacks[i].Damage}] ");
-                }
-                Console.WriteLine();
-                Attack mine = me.attacks[ReadNumber(1, me.attacks.Count) - 1];
-                Console.Clear();
-                enemy.TakeDamage(me.Attack(enemy, mine));
-
-            Attack other = enemy.attacks[random.Next(enemy.attacks.Count)];
-
-            me.TakeDamage(enemy.Attack(me, other));
-
-
-            }
-
-            if (enemy.IsDefeated())
-            {
-                Console.WriteLine($"{enemy.Name} died gg brosky {me.Name} wins!!");
-                return;
-            }
-
-            if (me.IsDefeated())
-            {
-                    Console.WriteLine($"YOOO YOU KILLED MEEE BITCHHH - {enemy.Name} wins >:c");
+                    Console.WriteLine($"[{i + 1}] {me.attacks[i].Name} [{me.attacks[i].Damage} dmg]");
                 }
 
+                Attack playerAttack = me.attacks[ReadNumber(1, me.attacks.Count) - 1];
+                Console.WriteLine($"\n{me.Name} uses {playerAttack.Name}!");
+                enemy.TakeDamage(playerAttack.Damage);
 
+                if (enemy.IsDefeated())
+                {
+                    break;
+                }
+
+                Attack enemyAttack = enemy.attacks[random.Next(enemy.attacks.Count)];
+                Console.WriteLine($"{enemy.Name} uses {enemyAttack.Name}!");
+                me.TakeDamage(enemyAttack.Damage);
+
+                Console.WriteLine($"{me.Name} HP: {me.GetCurrentHp()}/{me.GetMaxHp()}");
+                Console.WriteLine($"{enemy.Name} HP: {enemy.GetCurrentHp()}/{enemy.GetMaxHp()}\n");
+                Console.WriteLine("Press any key to continue...");
+                Console.ReadKey(true);
+                round++;
             }
 
+            Console.Clear();
+            Console.WriteLine("========================================");
+            Console.WriteLine("             BATTLE RESULT");
+            Console.WriteLine("========================================");
+
+            if (enemy.IsDefeated() && !me.IsDefeated())
+            {
+                Console.WriteLine($"{me.Name} wins the battle!");
+            }
+            else if (me.IsDefeated() && !enemy.IsDefeated())
+            {
+                Console.WriteLine($"{enemy.Name} wins the battle!");
+            }
+            else
+            {
+                Console.WriteLine("It's a draw! Both Pokémon are down.");
+            }
+
+            Console.WriteLine($"{me.Name}: HP {me.GetCurrentHp()}/{me.GetMaxHp()}");
+            Console.WriteLine($"{enemy.Name}: HP {enemy.GetCurrentHp()}/{enemy.GetMaxHp()}");
+            Console.WriteLine("========================================");
         }
     }
+}
+

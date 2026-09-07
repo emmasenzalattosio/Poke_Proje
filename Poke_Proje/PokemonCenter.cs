@@ -1,12 +1,8 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
-using System.Text;
 
 namespace Poke_Proje
 {
-
-    // this class is there to just be the middle man between dealer and customer 
-    // calling all methods to trigger actions
     public class PokemonCenter
     {
         private List<Pokemon> pokemonList;
@@ -17,25 +13,37 @@ namespace Poke_Proje
             pokemonList = new List<Pokemon>();
             trainerList = new List<Trainer>();
         }
+
         public List<Pokemon> GetAllPokeon()
         {
             return pokemonList;
-            
         }
 
-        // method makes sure you add pokeons
+        public List<Trainer> GetAllTrainers()
+        {
+            return trainerList;
+        }
+
         public void AddPokemon(Pokemon pokemon)
         {
-            
-                pokemonList.Add(pokemon);
-                Console.WriteLine($"{pokemon.Name} was added to the Pokemon Center.");
+            if (pokemon == null)
+            {
+                Console.WriteLine("No Pokémon to add.");
+                return;
+            }
 
-            
+            pokemonList.Add(pokemon);
+            Console.WriteLine($"{pokemon.Name} was added to the Pokemon Center.");
         }
 
-        // same thing pokeons
         public void AddTrainer(Trainer trainer)
         {
+            if (trainer == null)
+            {
+                Console.WriteLine("No trainer to add.");
+                return;
+            }
+
             trainerList.Add(trainer);
             Console.WriteLine($"Trainer {trainer.Name} was added.");
             Console.Clear();
@@ -43,9 +51,7 @@ namespace Poke_Proje
 
         public void ShowAllPokemon()
         {
-            // also self explanatory righttt???
-            // goes through all the pokeon list and show status
-            Console.WriteLine("All Pokemon in the Center: \n");
+            Console.WriteLine("All Pokémon in the Center: \n");
             foreach (Pokemon p in pokemonList)
             {
                 Console.WriteLine(p.ShowStatus());
@@ -54,34 +60,25 @@ namespace Poke_Proje
 
         public void ShowAllTrainers()
         {
-            Console.Clear();
-            // you got it?? same concept for trainers
             Console.WriteLine("All Trainers: ");
             foreach (Trainer t in trainerList)
             {
-                Console.WriteLine(t.Name);
+                Console.WriteLine($"- {t.Name} ({t.ass_poke.Count} Pokémon)");
             }
         }
 
         public Pokemon SearchPokemon(string name)
         {
-            // starting point null nada nothing niente
             Pokemon found = null;
 
-            // loops through every pokeon in list
-            // if found maches p then gg WELL DONE you found
-            // name parameter eingabe = name in list -- got it??
             foreach (Pokemon p in pokemonList)
             {
                 if (p.Name.ToLower() == name.ToLower())
                 {
                     found = p;
-                    
-                    break; // if found exit loop so no need to check everything
+                    break;
                 }
             }
-            
-            
 
             if (found != null)
             {
@@ -90,7 +87,6 @@ namespace Poke_Proje
                 Console.ResetColor();
                 Console.WriteLine(found.ShowStatus());
             }
-
             else
             {
                 Console.ForegroundColor = ConsoleColor.Red;
@@ -98,17 +94,14 @@ namespace Poke_Proje
                 Console.ResetColor();
             }
 
-            // if match then return match, if no match return shit ok????
             return found;
         }
 
-        // gets pokeon and give it to trainer, need both parameters from objekts to mitch match
         public void AssignPokeon(Pokemon pokemon, Trainer trainer)
         {
             trainer.AssignPokemon(pokemon);
         }
 
-        // do I need to explain??
         public void GetBehavior(Pokemon pokemon)
         {
             Console.WriteLine(pokemon.Behavior());
@@ -128,7 +121,6 @@ namespace Poke_Proje
             }
         }
 
-        // remove pokeon from center 
         public bool RemovePokemon(Pokemon pokemon)
         {
             if (pokemonList.Contains(pokemon))
@@ -138,6 +130,5 @@ namespace Poke_Proje
             }
             return false;
         }
-
     }
 }
