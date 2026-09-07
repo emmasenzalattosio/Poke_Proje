@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace Poke_Proje
@@ -30,7 +31,7 @@ namespace Poke_Proje
 
         private Trainer? SelectTrainer()
         {
-            var trainers = Center.GetAllTrainers();
+            List<Trainer> trainers = Center.GetAllTrainers();
 
             if (trainers.Count == 0)
             {

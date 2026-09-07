@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace Poke_Proje
 {
@@ -278,24 +279,41 @@ namespace Poke_Proje
         {
             List<Pokemon> all = Center.GetAllPokeon();
 
-            if (all.Count < 2)
+            if (all.Count == 0)
             {
-                Console.WriteLine("Not enough Pokémon in the center to start a battle.");
+                Console.WriteLine("There are no Pokémon in the center to battle.");
                 return;
             }
 
-            List<Pokemon> playerOptions = trainer != null && trainer.ass_poke.Count > 0 ? trainer.ass_poke : all;
+            Pokemon fighter;
 
-            Console.Clear();
-            Console.WriteLine("=== Choose your fighter ===");
-            for (int i = 0; i < playerOptions.Count; i++)
+            if (trainer != null && trainer.ass_poke.Count > 0)
             {
-                Console.WriteLine($"[{i + 1}] {playerOptions[i].Name} - HP: {playerOptions[i].GetCurrentHp()}/{playerOptions[i].GetMaxHp()}");
+                fighter = trainer.ChoosePokemonFromTeam();
+                if (fighter == null)
+                {
+                    return;
+                }
+            }
+            else
+            {
+                Console.Clear();
+                Console.WriteLine("=== Choose your fighter ===");
+                for (int i = 0; i < all.Count; i++)
+                {
+                    Console.WriteLine($"[{i + 1}] {all[i].Name} - HP: {all[i].GetCurrentHp()}/{all[i].GetMaxHp()}");
+                }
+
+                fighter = all[ReadNumber(1, all.Count) - 1];
             }
 
-            Pokemon fighter = playerOptions[ReadNumber(1, playerOptions.Count) - 1];
+            List<Pokemon> enemyOptions = all.Where(p => p != fighter).ToList();
+            if (enemyOptions.Count == 0)
+            {
+                Console.WriteLine("No enemy Pokémon available.");
+                return;
+            }
 
-            List<Pokemon> enemyOptions = all.FindAll(p => p != fighter);
             Console.Clear();
             Console.WriteLine("=== Choose your enemy ===");
             for (int i = 0; i < enemyOptions.Count; i++)
@@ -375,4 +393,3 @@ namespace Poke_Proje
         }
     }
 }
-

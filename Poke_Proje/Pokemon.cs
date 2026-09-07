@@ -43,6 +43,11 @@ namespace Poke_Proje
             return MaxHP;
         }
 
+        public string GetBattleStatus()
+        {
+            return $"{Name}: HP {HP}/{MaxHP}";
+        }
+
         public void AddAttack(string name, int damage)
         {
             if (attacks.Count >= 4)
@@ -50,13 +55,14 @@ namespace Poke_Proje
                 Console.WriteLine($"{Name} already knows 4 attacks, chill brudi");
                 return;
             }
+
             attacks.Add(new Attack(name, damage));
         }
 
         public int Attack(Pokemon p2, Attack attack)
         {
             Console.WriteLine();
-            Console.WriteLine($"{Name} uses {attack.Name} on {p2.Name}!");
+            Console.WriteLine($"{Name} uses {attack.Name} to annihilate {p2.Name}");
             return attack.Damage;
         }
 
@@ -85,11 +91,6 @@ namespace Poke_Proje
         public string ShowStatus()
         {
             return $"{Name} - {Trainer} - Lvl: [{Level}], HP: {HP}/{MaxHP}, ATK: {AttackDamage}, DEF: {Defense}\n";
-        }
-
-        public string GetBattleStatus()
-        {
-            return $"{Name}: HP {HP}/{MaxHP}";
         }
     }
 }
