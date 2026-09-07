@@ -15,6 +15,40 @@ namespace Poke_Proje
             this.ass_poke = new List<Pokemon>();
         }
 
+        private int ReadNumber(int min, int max)
+        {
+            int result;
+
+            while (true)
+            {
+                Console.Write($"Enter a number ({min}-{max}): ");
+                if (int.TryParse(Console.ReadLine(), out result) && result >= min && result <= max)
+                    return result;
+
+                Console.WriteLine("Invalid, try again.");
+            }
+        }
+
+        public Pokemon? ChoosePokemonFromTeam()
+        {
+            if (ass_poke.Count == 0)
+            {
+                Console.WriteLine($"{Name} has no Pokémon in the team.");
+                return null;
+            }
+
+            Console.Clear();
+            Console.WriteLine($"=== {Name}'s team ===");
+
+            for (int i = 0; i < ass_poke.Count; i++)
+            {
+                Console.WriteLine($"[{i + 1}] {ass_poke[i].Name} - HP: {ass_poke[i].GetCurrentHp()}/{ass_poke[i].GetMaxHp()}");
+            }
+
+            int choice = ReadNumber(1, ass_poke.Count);
+            return ass_poke[choice - 1];
+        }
+
         public void AssignPokemon(Pokemon pokemon)
         {
             if (pokemon == null)
