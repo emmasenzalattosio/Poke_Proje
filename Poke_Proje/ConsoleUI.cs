@@ -1,8 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Poke_Proje
 {
@@ -10,8 +7,22 @@ namespace Poke_Proje
     {
         public static void WriteCentered(string text)
         {
-            int leftPadding = Math.Max(0, (Console.WindowWidth - text.Length) / 2);
-            Console.WriteLine(new string(' ', leftPadding) + text);
+            if (string.IsNullOrEmpty(text))
+            {
+                Console.WriteLine();
+                return;
+            }
+
+            string[] lines = text.Split(new[] { "\r\n", "\n" }, StringSplitOptions.None);
+
+            int maxWidth = lines.Max(line => line.Length);
+
+            int leftPadding = Math.Max(0, (Console.WindowWidth - maxWidth) / 2);
+
+            foreach (string line in lines)
+            {
+                Console.WriteLine(new string(' ', leftPadding) + line);
+            }
         }
 
         public static void WriteCenteredHighlighted(string text, bool selected, int boxWidth = 30)
@@ -38,8 +49,5 @@ namespace Poke_Proje
 
             Console.WriteLine();
         }
-
-       
-
     }
 }
