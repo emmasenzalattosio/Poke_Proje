@@ -45,7 +45,7 @@ namespace Poke_Proje
             }
 
             trainerList.Add(trainer);
-            Console.WriteLine($"Trainer {trainer.Name} was added.");
+            ConsoleUI.WriteCentered($"Trainer {trainer.Name} was added.");
             Console.Clear();
         }
 
@@ -60,10 +60,11 @@ namespace Poke_Proje
 
         public void ShowAllTrainers()
         {
-            Console.WriteLine("All Trainers: ");
+            ConsoleUI.WriteCentered("All Trainers: ");
+            Console.WriteLine();
             foreach (Trainer t in trainerList)
             {
-                Console.WriteLine($"- {t.Name} ({t.ass_poke.Count} Pokémon)");
+                ConsoleUI.WriteCentered($"> {t.Name} ({t.ass_poke.Count} Pokémon)");
             }
         }
 

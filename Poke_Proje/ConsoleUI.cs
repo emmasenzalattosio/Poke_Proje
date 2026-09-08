@@ -51,66 +51,38 @@ namespace Poke_Proje
             Console.WriteLine();
         }
 
-        public static void DrawFrame(string title, IEnumerable<string> lines, ConsoleColor borderColor = ConsoleColor.Cyan, ConsoleColor titleColor = ConsoleColor.Yellow)
+        public static void WriteCenteredScreen(string title, IEnumerable<string> lines, ConsoleColor titleColor = ConsoleColor.Yellow)
         {
-            List<string> content = new List<string>();
+            List<string> body = lines.Select(line => line ?? string.Empty).ToList();
 
-            if (!string.IsNullOrWhiteSpace(title))
+            bool hasTitle = !string.IsNullOrWhiteSpace(title);
+            string trimmedTitle = hasTitle ? title.Trim() : string.Empty;
+
+            // Every line (title included) shares ONE left padding, computed from the widest
+            // line in the whole block. This keeps emoji/bullets in the same column instead
+            // of each line being centered on its own (which shifts them row by row).
+            int maxWidth = body.Count > 0 ? body.Max(line => line.Length) : 0;
+            if (hasTitle)
             {
-                content.Add(title);
+                maxWidth = Math.Max(maxWidth, trimmedTitle.Length);
             }
 
-            foreach (string line in lines)
+            int leftPadding = Math.Max(0, (Console.WindowWidth - maxWidth) / 2);
+            string pad = new string(' ', leftPadding);
+
+            if (hasTitle)
             {
-                if (line != null)
-                {
-                    content.Add(line);
-                }
-            }
-
-            int width = Math.Max(36, content.Max(line => line.Length) + 2);
-            int leftPadding = Math.Max(0, (Console.WindowWidth - width) / 2);
-
-            Console.ForegroundColor = borderColor;
-            Console.WriteLine(new string(' ', leftPadding) + "╔" + new string('═', width + 2) + "╗");
-            Console.WriteLine(new string(' ', leftPadding) + "║" + new string(' ', width + 2) + "║");
-
-            Console.ForegroundColor = titleColor;
-            string titleLine = $" {title.Trim()} ";
-            Console.WriteLine(new string(' ', leftPadding) + "║" + titleLine.PadRight(width + 1) + "║");
-
-            Console.ForegroundColor = borderColor;
-            Console.WriteLine(new string(' ', leftPadding) + "╠" + new string('═', width + 2) + "╣");
-            Console.ResetColor();
-
-            foreach (string line in content.Skip(!string.IsNullOrWhiteSpace(title) ? 1 : 0))
-            {
-                string display = line.Length > width ? line.Substring(0, width) : line.PadRight(width);
-                Console.Write(new string(' ', leftPadding));
-                Console.Write("║ ");
-                Console.ForegroundColor = ConsoleColor.White;
-                Console.Write(display);
+                Console.ForegroundColor = titleColor;
+                Console.WriteLine(pad + trimmedTitle);
                 Console.ResetColor();
-                Console.WriteLine(" ║");
+                Console.WriteLine();
             }
 
-            Console.ForegroundColor = borderColor;
-            Console.WriteLine(new string(' ', leftPadding) + "╚" + new string('═', width + 2) + "╝");
-            Console.ResetColor();
-        }
-
-        public static void WriteMenuFrame(string title, IEnumerable<string> items, int selectedIndex, ConsoleColor borderColor = ConsoleColor.DarkMagenta)
-        {
-            List<string> options = items.ToList();
-            List<string> lines = new List<string>();
-
-            for (int i = 0; i < options.Count; i++)
+            foreach (string line in body)
             {
-                string prefix = i == selectedIndex ? "▶" : " ";
-                lines.Add($"{prefix} {options[i]}");
+                Console.WriteLine(pad + line);
             }
-
-            DrawFrame(title, lines, borderColor, ConsoleColor.Yellow);
         }
+
     }
 }

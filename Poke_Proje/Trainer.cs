@@ -33,16 +33,30 @@ namespace Poke_Proje
         {
             if (ass_poke.Count == 0)
             {
-                Console.WriteLine($"{Name} has no Pokémon in the team.");
+                ConsoleUI.WriteCentered($"{Name} has no Pokémon in the team.");
                 return null;
             }
 
             Console.Clear();
-            Console.WriteLine($"=== {Name}'s team ===");
+            Console.WriteLine();
+            Console.WriteLine();
+            Console.WriteLine();
+            Console.WriteLine();
+            Console.WriteLine();
+            Console.WriteLine();
+            Console.WriteLine();
+            Console.WriteLine();
+            Console.WriteLine();
+            ConsoleUI.WriteCentered(@"   ___  _______   _____  _____  ___    _______________ ______________
+  / _ \/ __/ _ | / _ \ \/ /__ \/__ \  / __/  _/ ___/ // /_  __/ / / /
+ / , _/ _// __ |/ // /\  / /__/ /__/ / _/_/ // (_ / _  / / / /_/_/_/ 
+/_/|_/___/_/ |_/____/ /_/ (_)  (_)  /_/ /___/\___/_//_/ /_/ (_|_|_)  
+                                                                     ");
+            ConsoleUI.WriteCentered($"=== {Name}'s team ===");
 
             for (int i = 0; i < ass_poke.Count; i++)
             {
-                Console.WriteLine($"[{i + 1}] {ass_poke[i].Name} - HP: {ass_poke[i].GetCurrentHp()}/{ass_poke[i].GetMaxHp()}");
+                ConsoleUI.WriteCentered($"[{i + 1}] {ass_poke[i].Name} - HP: {ass_poke[i].GetCurrentHp()}/{ass_poke[i].GetMaxHp()}");
             }
 
             int choice = ReadNumber(1, ass_poke.Count);
@@ -53,13 +67,13 @@ namespace Poke_Proje
         {
             if (pokemon == null)
             {
-                Console.WriteLine("No Pokémon was given to the trainer.");
+                ConsoleUI.WriteCentered("No Pokémon was given to the trainer.");
                 return;
             }
 
             if (ass_poke.Count >= 5)
             {
-                Console.WriteLine($"{Name} already has too many pokes, chill mal brudi");
+                ConsoleUI.WriteCentered($"{Name} already has too many pokes, chill mal brudi");
                 return;
             }
 
@@ -71,23 +85,29 @@ namespace Poke_Proje
         public void ShowPokemon()
         {
             Console.Clear();
-            Console.WriteLine($"=== {Name}'s Pokémon ===");
+            Console.WriteLine();
+            Console.WriteLine();
+            Console.WriteLine();
+            Console.WriteLine();
+            Console.WriteLine();
+            Console.WriteLine();
+            ConsoleUI.WriteCentered($"=== {Name}'s Pokémon ===");
 
             if (ass_poke.Count == 0)
             {
-                Console.WriteLine("No Pokémon assigned yet.");
-                Console.WriteLine("\nPress any key to return to the menu...");
+                ConsoleUI.WriteCentered("No Pokémon assigned yet.");
+                ConsoleUI.WriteCentered("\nPress any key to return to the menu...");
                 Console.ReadKey(true);
                 return;
             }
 
             foreach (Pokemon p in ass_poke)
             {
-                Console.WriteLine(p.ShowStatus());
+                ConsoleUI.WriteCentered(p.ShowStatus());
                 Console.WriteLine();
             }
 
-            Console.WriteLine("Press any key to return to the menu...");
+            ConsoleUI.WriteCentered("Press any key to return to the menu...");
             Console.ReadKey(true);
         }
 
@@ -104,28 +124,16 @@ namespace Poke_Proje
             Console.WriteLine($"HP: {pokemon.GetCurrentHp()}/{pokemon.GetMaxHp()}");
         }
 
-        public void HealPokemon(string name)
-        {
-            Pokemon? pokemon = ass_poke.FirstOrDefault(p => p.Name.Equals(name, StringComparison.OrdinalIgnoreCase));
-
-            if (pokemon == null)
-            {
-                Console.WriteLine($"{name} is not in {Name}'s team.");
-                return;
-            }
-
-            HealPokemon(pokemon);
-        }
 
         public void HealTeam()
         {
             if (ass_poke.Count == 0)
             {
-                Console.WriteLine($"{Name} has no Pokémon to heal.");
+                ConsoleUI.WriteCentered($"{Name} has no Pokémon to heal.");
                 return;
             }
 
-            Console.WriteLine($"{Name} is healing the whole team...");
+            ConsoleUI.WriteCentered($"{Name} is healing the whole team...");
             foreach (Pokemon p in ass_poke)
             {
                 p.Heal();

@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 
 namespace Poke_Proje
 {
@@ -17,6 +18,7 @@ namespace Poke_Proje
 
         public void Start()
         {
+
             Console.Clear();
             DrawBanner();
 
@@ -47,7 +49,7 @@ namespace Poke_Proje
             {
                 Console.Clear();
                 DrawBanner();
-                Console.ForegroundColor = ConsoleColor.White;
+                Console.ForegroundColor = ConsoleColor.Gray;
                 ConsoleUI.WriteCentered(@"   ________                                                       __             _                
   / ____/ /_  ____  ____  ________     __  ______  __  _______   / /__________ _(_)___  ___  _____
  / /   / __ \/ __ \/ __ \/ ___/ _ \   / / / / __ \/ / / / ___/  / __/ ___/ __ `/ / __ \/ _ \/ ___/
@@ -60,7 +62,7 @@ namespace Poke_Proje
 
                 for (int i = 0; i < trainers.Count; i++)
                 {
-                    ConsoleUI.WriteCenteredHighlighted($"{trainers[i].Name} - Chan", i == selectedIndex);
+                    ConsoleUI.WriteCenteredHighlighted($"│ 🙋🏻 {trainers[i].Name} - Chan         │", i == selectedIndex);
                 }
 
                 ConsoleKey key = Console.ReadKey(true).Key;
@@ -93,12 +95,13 @@ namespace Poke_Proje
         {
             string[] options =
             {
-                "View Pokémon",
-                "Search Pokémon",
-                "Show Trainers",
-                "Start Battle",
-                "Heal Team",
-                "Exit"
+                "👀 View Pokémon",
+                "🔍 Search Pokémon",
+                "🧑‍🤝‍🧑 Show Trainers",
+                "⚔️ Start Battle",
+                "💊 Heal Team",
+                "🕵️ Team WH Ambush",
+                "🚪 Exit"
             };
 
             int selected = 0;
@@ -109,22 +112,22 @@ namespace Poke_Proje
                 DrawBanner();
                 Console.WriteLine();
                 Console.WriteLine();
+
+                Console.ForegroundColor = ConsoleColor.Yellow;
                 ConsoleUI.WriteCentered($"Trainer: {trainer.Name}");
-                ConsoleUI.WriteCentered("====================================");
+                ConsoleUI.WriteCentered("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
                 Console.WriteLine();
+                Console.ResetColor();
 
                 for (int i = 0; i < options.Length; i++)
                 {
-
-                    //    Console.BackgroundColor = ConsoleColor.Green;
-                    //    Console.ForegroundColor = ConsoleColor.Black;
-                    //    Console.WriteLine($" > {options[i]}");
-                    //    Console.ResetColor();
-                    //
                     ConsoleUI.WriteCenteredHighlighted($"{options[i]} ", i == selected);
 
-
                 }
+
+                Console.ForegroundColor = ConsoleColor.Yellow;
+                ConsoleUI.WriteCentered("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
+                Console.ResetColor();
 
                 ConsoleKey key = Console.ReadKey(true).Key;
 
@@ -182,6 +185,13 @@ namespace Poke_Proje
 
                         case 5:
                             Console.Clear();
+                            Arena.RocketEncounter(trainer);
+                            ConsoleUI.WriteCentered("\nPress any key to go back to the main menu...");
+                            Console.ReadKey(true);
+                            return;
+
+                        case 6:
+                            Console.Clear();
                             ConsoleUI.WriteCentered("Goodbye, trainer! See you at the next battle!");
                             Console.ReadKey(true);
                             return;
@@ -195,14 +205,14 @@ namespace Poke_Proje
         {
 
 
-            Console.ForegroundColor = ConsoleColor.Red;
+            Console.ForegroundColor = ConsoleColor.White;
             ConsoleUI.WriteCentered(@"█▀▀▀▀▀▄   ▄▀▀▀▀▄  █▀▀█ ▀▀█  ▄▀▀▀▀▀█  ▄▀▀▀▀▄▄▀▀▄   ▄▀▀▀▀▄   ▄▀▀▀▀▄ 
 █      █ █      █ █  ▓   █ █      ▓ █          █ █      █ █      █
 █  █▀  █ █  █▀  █ █   ▄▄▀  █  █▀▀▀▀ █  ░   ░   █ █  █▀  █ █  ░   █
 ▓  ▀▀ ▄▀ ▓  █▄  █ ▓  ▄  ▀▄ ▓  █▄█▄▄ ▓  ░   ░   █ ▓  █▄  █ ▓  ░   █
 ▒  █▀▀   ▒  ▀▀  ▒ ▒  █   ▒ ▒      ▒ ▒  ▒   ▒   ▓ ▒  ▀▀  ▒ ▒  ▒   ▓
 ░▄▄█      ▀▄▄▄▄▀  ░▄▄█ ▄▄░  ▀▄▄▄▄▄█ ▒▄▄▓ ▄▄▓ ▄▄▒  ▀▄▄▄▄▀  ▒▄▄▓ ▄▄▒");
-           
+
             Console.ResetColor();
         }
 

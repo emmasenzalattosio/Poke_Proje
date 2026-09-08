@@ -7,79 +7,84 @@ namespace Poke_Proje
     public class Arena
     {
         public PokemonCenter Center { get; set; }
+        public TeamWH RocketTeam;
+
+        private Pokemon RocketGuard;
+
+
         private Random random = new Random();
 
         public Arena()
         {
             Center = new PokemonCenter();
 
-            Trainer Holger = new Trainer("Holger");
+            Trainer Holger = new Trainer("Holger    ");
             Center.AddTrainer(Holger);
 
-            Trainer Aman = new Trainer("Aman");
+            Trainer Aman = new Trainer("Aman      ");
             Center.AddTrainer(Aman);
 
-            Trainer Hasan = new Trainer("Hasan");
+            Trainer Hasan = new Trainer("Hasan     ");
             Center.AddTrainer(Hasan);
 
-            Trainer Jens = new Trainer("Jens");
+            Trainer Jens = new Trainer("Jens      ");
             Center.AddTrainer(Jens);
 
-            Trainer Chris = new Trainer("Chris");
+            Trainer Chris = new Trainer("Chris     ");
             Center.AddTrainer(Chris);
 
-            Trainer Vanessa = new Trainer("Vanessa");
+            Trainer Vanessa = new Trainer("Vanessa   ");
             Center.AddTrainer(Vanessa);
 
-            Trainer Emma = new Trainer("Emma");
+            Trainer Emma = new Trainer("Emma      ");
             Center.AddTrainer(Emma);
 
-            Trainer Josi = new Trainer("Josi");
+            Trainer Josi = new Trainer("Josi      ");
             Center.AddTrainer(Josi);
 
-            Trainer Babak = new Trainer("Babak");
+            Trainer Babak = new Trainer("Babak     ");
             Center.AddTrainer(Babak);
 
-            Trainer Mohammed = new Trainer("Mohammed");
+            Trainer Mohammed = new Trainer("Mohammed  ");
             Center.AddTrainer(Mohammed);
 
-            Trainer Ilia = new Trainer("Ilia");
+            Trainer Ilia = new Trainer("Ilia      ");
             Center.AddTrainer(Ilia);
 
-            Trainer Sasha = new Trainer("Sasha");
+            Trainer Sasha = new Trainer("Sasha     ");
             Center.AddTrainer(Sasha);
 
-            Trainer Raffael = new Trainer("Raffael");
+            Trainer Raffael = new Trainer("Raffael   ");
             Center.AddTrainer(Raffael);
 
-            Trainer Fabian = new Trainer("Fabian");
+            Trainer Fabian = new Trainer("Fabian    ");
             Center.AddTrainer(Fabian);
 
-            Trainer Kathy = new Trainer("Kathy");
+            Trainer Kathy = new Trainer("Kathy     ");
             Center.AddTrainer(Kathy);
 
-            Trainer Azzeddine = new Trainer("Azzeddine");
+            Trainer Azzeddine = new Trainer("Azzeddine ");
             Center.AddTrainer(Azzeddine);
 
-            Trainer Daniel = new Trainer("Daniel");
+            Trainer Daniel = new Trainer("Daniel    ");
             Center.AddTrainer(Daniel);
 
-            Trainer Marcel = new Trainer("Marcel");
+            Trainer Marcel = new Trainer("Marcel    ");
             Center.AddTrainer(Marcel);
 
-            Trainer Roman = new Trainer("Roman");
+            Trainer Roman = new Trainer("Roman     ");
             Center.AddTrainer(Roman);
 
-            Trainer Felix = new Trainer("Felix");
+            Trainer Felix = new Trainer("Felix     ");
             Center.AddTrainer(Felix);
 
-            Trainer Daniel2 = new Trainer("Daniel2");
+            Trainer Daniel2 = new Trainer("Daniel2   ");
             Center.AddTrainer(Daniel2);
 
-            Trainer Sven = new Trainer("Sven");
+            Trainer Sven = new Trainer("Sven      ");
             Center.AddTrainer(Sven);
 
-            Trainer Aikut = new Trainer("Aykut");
+            Trainer Aikut = new Trainer("Aykut     ");
             Center.AddTrainer(Aikut);
 
             Console.Clear();
@@ -259,6 +264,16 @@ namespace Poke_Proje
             Swalot.AddAttack("Strahlende-Persöhnlichkeit", 100);
             Center.AddPokemon(Swalot);
             Aman.AssignPokemon(Swalot);
+
+            // Team WH, they be lurking around ready to yoink someone's pokeon
+            RocketTeam = new TeamWH("Team WH");
+            Chaotic rocketGuardPoke = new Chaotic("[Team WH Grunt]", "Trainer: [Team WH]", 50, 100, 60, 50);
+            rocketGuardPoke.AddAttack("Yoink Slam", 50);
+            rocketGuardPoke.AddAttack("Sneaky Snatch", 40);
+            rocketGuardPoke.AddAttack("Cheap Shot", 60);
+            rocketGuardPoke.AddAttack("Bounce", 30);
+            RocketTeam.AssignPokemon(rocketGuardPoke);
+            RocketGuard = rocketGuardPoke;
         }
 
         private int ReadNumber(int min, int max)
@@ -267,11 +282,11 @@ namespace Poke_Proje
 
             while (true)
             {
-                Console.Write($"Enter a number ({min}-{max}): ");
+                ConsoleUI.WriteCentered($"Enter a number ({min}-{max}): ");
                 if (int.TryParse(Console.ReadLine(), out result) && result >= min && result <= max)
                     return result;
 
-                Console.WriteLine("Invalid, try again.");
+                ConsoleUI.WriteCentered("Invalid, try again.");
             }
         }
 
@@ -281,7 +296,9 @@ namespace Poke_Proje
 
             if (all.Count == 0)
             {
-                Console.WriteLine("There are no Pokémon in the center to battle.");
+                Console.Clear();
+                ConsoleUI.WriteCenteredScreen("🥊 Start Battle", new[] { "There are no Pokémon in the center to battle.", "", "Press any key to continue..." }, ConsoleColor.Yellow);
+                Console.ReadKey(true);
                 return;
             }
 
@@ -298,11 +315,15 @@ namespace Poke_Proje
             else
             {
                 Console.Clear();
-                Console.WriteLine("=== Choose your fighter ===");
+                List<string> fighterLines = new List<string>();
+
+
                 for (int i = 0; i < all.Count; i++)
                 {
+
                     Console.WriteLine($"[{i + 1}] {all[i].Name} - HP: {all[i].GetCurrentHp()}/{all[i].GetMaxHp()}");
                 }
+                ConsoleUI.WriteCenteredScreen("🥊 Choose your fighter", fighterLines, ConsoleColor.Yellow);
 
                 fighter = all[ReadNumber(1, all.Count) - 1];
             }
@@ -315,43 +336,162 @@ namespace Poke_Proje
             }
 
             Console.Clear();
-            Console.WriteLine("=== Choose your enemy ===");
+
+            List<string> enemyLines = new List<string>();
+            Console.WriteLine();
+            Console.WriteLine();
+            Console.WriteLine();
+            Console.WriteLine();
+            ConsoleUI.WriteCentered(@"   ___  _______   _____  _____  ___    _______________ ______________
+  / _ \/ __/ _ | / _ \ \/ /__ \/__ \  / __/  _/ ___/ // /_  __/ / / /
+ / , _/ _// __ |/ // /\  / /__/ /__/ / _/_/ // (_ / _  / / / /_/_/_/ 
+/_/|_/___/_/ |_/____/ /_/ (_)  (_)  /_/ /___/\___/_//_/ /_/ (_|_|_)  
+                                                                     ");
+
             for (int i = 0; i < enemyOptions.Count; i++)
             {
-                Console.WriteLine($"[{i + 1}] {enemyOptions[i].Name} - HP: {enemyOptions[i].GetCurrentHp()}/{enemyOptions[i].GetMaxHp()}");
+                ConsoleUI.WriteCentered($"[{i + 1}] {enemyOptions[i].Name} - HP: {enemyOptions[i].GetCurrentHp()}/{enemyOptions[i].GetMaxHp()}");
             }
 
+            ConsoleUI.WriteCenteredScreen("🎯 Choose your enemy", enemyLines, ConsoleColor.Yellow);
+
             Pokemon enemy = enemyOptions[ReadNumber(1, enemyOptions.Count) - 1];
-            Console.WriteLine($"\n{fighter.Name} VS {enemy.Name}!\n");
 
             Fight(fighter, enemy);
         }
 
+
+        public void RocketEncounter(Trainer trainer)
+        {
+            bool hadPokemon = trainer.HasPokemon();
+            List<string> stealLines = RocketTeam.StealPokemon(trainer);
+
+            if (!hadPokemon)
+            {
+                Console.Clear();
+                stealLines.Add(string.Empty);
+                //stealLines.Add("Press any key to continue...");
+                ConsoleUI.WriteCenteredScreen("🕵️ Team WH Ambush", stealLines, ConsoleColor.Yellow);
+                Console.ReadKey(true);
+                return;
+            }
+
+            // everything Team WH is holding except their own guard pokemon is loot they just stole
+            List<Pokemon> stolenPokemon = RocketTeam.ass_poke.Where(p => p != RocketGuard).ToList();
+
+            stealLines.Add(string.Empty);
+            stealLines.Add("---> Press [Y] to fight for your pokeon back, [N] to walk away <---");
+
+            Console.Clear();
+            ConsoleUI.WriteCenteredScreen("🕵️ Team WH Ambush", stealLines, ConsoleColor.Yellow);
+            ConsoleKey key = Console.ReadKey(true).Key;
+
+            if (key != ConsoleKey.Y)
+            {
+                Console.Clear();
+                ConsoleUI.WriteCenteredScreen("🕵️ Team WH Ambush", new[] { $"{trainer.Name} chickens out for now, Team WH keeps the loot...", "" }, ConsoleColor.Yellow);
+                Console.ReadKey(true);
+                return;
+            }
+
+            List<Pokemon> ownOptions = Center.GetAllPokeon().Where(p => !RocketTeam.ass_poke.Contains(p)).ToList();
+
+            if (ownOptions.Count == 0)
+            {
+                Console.Clear();
+                ConsoleUI.WriteCenteredScreen("🕵️ Team WH Ambush", new[] { "No pokeon left in the center to fight with, come back later.", "", "Press any key to continue..." }, ConsoleColor.Yellow);
+                Console.ReadKey(true);
+                return;
+            }
+
+            Console.Clear();
+            List<string> ownLines = new List<string>();
+            for (int i = 0; i < ownOptions.Count; i++)
+            {
+                ownLines.Add($"[{i + 1}] {ownOptions[i].Name} - HP: {ownOptions[i].GetCurrentHp()}/{ownOptions[i].GetMaxHp()}");
+            }
+            ConsoleUI.WriteCenteredScreen("🕵️ Choose your fighter to win your pokeon back", ownLines, ConsoleColor.Yellow);
+
+            Pokemon championPick = ownOptions[ReadNumber(1, ownOptions.Count) - 1];
+            Pokemon rocketFighter = RocketGuard;
+            rocketFighter.Heal(); // patch em up so every ambush is a fair fight
+
+            Fight(championPick, rocketFighter);
+
+            List<string> outcomeLines = new List<string>();
+
+            if (rocketFighter.IsDefeated() && !championPick.IsDefeated())
+            {
+                outcomeLines.Add("You beat Team WH!! Here's your pokeon back.");
+                foreach (Pokemon p in stolenPokemon)
+                {
+                    RocketTeam.ass_poke.Remove(p);
+                    trainer.AssignPokemon(p);
+                }
+            }
+            else
+            {
+                outcomeLines.Add("Team WH keeps your pokeon for now, git gud and try again.");
+            }
+
+            outcomeLines.Add(string.Empty);
+            outcomeLines.Add("Press any key to continue...");
+
+            Console.Clear();
+            ConsoleUI.WriteCenteredScreen("🕵️ Ambush Result", outcomeLines, ConsoleColor.Yellow);
+            Console.ReadKey(true);
+        }
+
+
+
         private void Fight(Pokemon me, Pokemon enemy)
         {
             Console.Clear();
-            Console.WriteLine("=== BATTLE START ===");
-            Console.WriteLine($"{me.Name} VS {enemy.Name}");
-            Console.WriteLine($"{me.GetBattleStatus()}");
-            Console.WriteLine($"{enemy.GetBattleStatus()}\n");
+            Console.WriteLine();
+            Console.WriteLine();
+            Console.WriteLine();
+            ConsoleUI.WriteCentered(@"   ___  ___ ______________   ____  _____________   ___  ______
+  / _ )/ _ /_  __/_  __/ /  / __/ / __/_  __/ _ | / _ \/_  __/
+ / _  / __ |/ /   / / / /__/ _/  _\ \  / / / __ |/ , _/ / /   
+/____/_/ |_/_/   /_/ /____/___/ /___/ /_/ /_/ |_/_/|_| /_/    
+                                                              ");
+            ConsoleUI.WriteCenteredScreen("⚔️", new[]
+            {
+                $"{me.Name} VS {enemy.Name}",
+                me.GetBattleStatus(),
+                enemy.GetBattleStatus(),
+                "",
+                "Press any key to continue..."
+            }, ConsoleColor.Yellow);
+            Console.ReadKey(true);
 
             int round = 1;
+            List<string> turnSummary = new List<string>();
 
             while (!me.IsDefeated() && !enemy.IsDefeated())
             {
-                Console.WriteLine($"--- Round {round} ---");
-                Console.WriteLine($"{me.Name}: HP {me.GetCurrentHp()}/{me.GetMaxHp()}");
-                Console.WriteLine($"{enemy.Name}: HP {enemy.GetCurrentHp()}/{enemy.GetMaxHp()}");
-                Console.WriteLine("Choose your attack:");
+                Console.Clear();
 
+                List<string> roundLines = new List<string>(turnSummary);
+                if (turnSummary.Count > 0)
+                {
+                    roundLines.Add(string.Empty);
+                }
+                roundLines.Add($"--- Round {round} ---");
+                roundLines.Add($"{me.Name}: HP {me.GetCurrentHp()}/{me.GetMaxHp()}");
+                roundLines.Add($"{enemy.Name}: HP {enemy.GetCurrentHp()}/{enemy.GetMaxHp()}");
+                roundLines.Add(string.Empty);
+                roundLines.Add("Choose your attack:");
                 for (int i = 0; i < me.attacks.Count; i++)
                 {
-                    Console.WriteLine($"[{i + 1}] {me.attacks[i].Name} [{me.attacks[i].Damage} dmg]");
+                    roundLines.Add($"[{i + 1}] {me.attacks[i].Name} [{me.attacks[i].Damage} dmg]");
                 }
+                ConsoleUI.WriteCenteredScreen("🎮 Choose your attack", roundLines, ConsoleColor.Yellow);
 
                 Attack playerAttack = me.attacks[ReadNumber(1, me.attacks.Count) - 1];
-                Console.WriteLine($"\n{me.Name} uses {playerAttack.Name}!");
                 enemy.TakeDamage(playerAttack.Damage);
+
+                turnSummary = new List<string> { $"{me.Name} uses {playerAttack.Name}!" };
 
                 if (enemy.IsDefeated())
                 {
@@ -359,37 +499,46 @@ namespace Poke_Proje
                 }
 
                 Attack enemyAttack = enemy.attacks[random.Next(enemy.attacks.Count)];
-                Console.WriteLine($"{enemy.Name} uses {enemyAttack.Name}!");
                 me.TakeDamage(enemyAttack.Damage);
 
-                Console.WriteLine($"{me.Name} HP: {me.GetCurrentHp()}/{me.GetMaxHp()}");
-                Console.WriteLine($"{enemy.Name} HP: {enemy.GetCurrentHp()}/{enemy.GetMaxHp()}\n");
-                Console.WriteLine("Press any key to continue...");
-                Console.ReadKey(true);
+                turnSummary.Add($"{enemy.Name} uses {enemyAttack.Name}!");
+                turnSummary.Add($"{me.Name} HP: {me.GetCurrentHp()}/{me.GetMaxHp()}");
+                turnSummary.Add($"{enemy.Name} HP: {enemy.GetCurrentHp()}/{enemy.GetMaxHp()}");
+
                 round++;
             }
 
+
+
             Console.Clear();
-            Console.WriteLine("========================================");
-            Console.WriteLine("             BATTLE RESULT");
-            Console.WriteLine("========================================");
+
+            List<string> resultLines = new List<string>(turnSummary);
+            if (turnSummary.Count > 0)
+            {
+                resultLines.Add(string.Empty);
+            }
 
             if (enemy.IsDefeated() && !me.IsDefeated())
             {
-                Console.WriteLine($"{me.Name} wins the battle!");
+                resultLines.Add($"🏆 {me.Name} wins the battle!");
             }
             else if (me.IsDefeated() && !enemy.IsDefeated())
             {
-                Console.WriteLine($"{enemy.Name} wins the battle!");
+                resultLines.Add($"🏆 {enemy.Name} wins the battle!");
             }
             else
             {
-                Console.WriteLine("It's a draw! Both Pokémon are down.");
+                resultLines.Add("🤝 It's a draw! Both Pokémon are down.");
             }
 
-            Console.WriteLine($"{me.Name}: HP {me.GetCurrentHp()}/{me.GetMaxHp()}");
-            Console.WriteLine($"{enemy.Name}: HP {enemy.GetCurrentHp()}/{enemy.GetMaxHp()}");
-            Console.WriteLine("========================================");
+            resultLines.Add($"{me.Name}: HP {me.GetCurrentHp()}/{me.GetMaxHp()}");
+            resultLines.Add($"{enemy.Name}: HP {enemy.GetCurrentHp()}/{enemy.GetMaxHp()}");
+            resultLines.Add(string.Empty);
+            resultLines.Add("Press any key to continue...");
+
+            ConsoleUI.WriteCenteredScreen("🏁 BATTLE RESULT", resultLines, ConsoleColor.Yellow);
+            Console.ReadKey(true);
         }
+
     }
 }
