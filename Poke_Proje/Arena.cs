@@ -455,12 +455,14 @@ namespace Poke_Proje
  / _  / __ |/ /   / / / /__/ _/  _\ \  / / / __ |/ , _/ / /   
 /____/_/ |_/_/   /_/ /____/___/ /___/ /_/ /_/ |_/_/|_| /_/    
                                                               ");
-            ConsoleUI.WriteCenteredScreen("⚔️", new[]
+            ConsoleUI.WriteCenteredScreen(" ", new[]
             {
-                $"{me.Name} VS {enemy.Name}",
-                me.GetBattleStatus(),
-                enemy.GetBattleStatus(),
-                "",
+                $"║ {me.Name} VS {enemy.Name}    ║",
+                $"║                                   ║",
+                $"║ {me.GetBattleStatus()}      ║",
+                $"║ {enemy.GetBattleStatus()}              ║",
+                "║                                   ║",
+                $"",
                 "Press any key to continue..."
             }, ConsoleColor.Yellow);
             Console.ReadKey(true);

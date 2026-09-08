@@ -52,7 +52,8 @@ namespace Poke_Proje
  / , _/ _// __ |/ // /\  / /__/ /__/ / _/_/ // (_ / _  / / / /_/_/_/ 
 /_/|_/___/_/ |_/____/ /_/ (_)  (_)  /_/ /___/\___/_//_/ /_/ (_|_|_)  
                                                                      ");
-            ConsoleUI.WriteCentered($"=== {Name}'s team ===");
+            ConsoleUI.WriteCentered($"═════════ { Name}'s team ═════════");
+            Console.WriteLine();
 
             for (int i = 0; i < ass_poke.Count; i++)
             {
