@@ -6,6 +6,81 @@ namespace Poke_Proje
 {
     public class Ascii
     {
+        public void ShowArt(string pokemonName)
+        {
+            switch (pokemonName)
+            {
+                case "[Kosturso]":
+                    Kosturso();
+                    break;
+                case "[Traumato]":
+                    Traumato();
+                    break;
+                case "[Galar Wheezing]":
+                    Wheezing();
+                    break;
+                case "[Enamorus]":
+                    Enamorus();
+                    break;
+                case "[Scream Tail]":
+                    ScreamTail();
+                    break;
+                case "[Mr.Mime]":
+                    MrMime();
+                    break;
+                case "[Jigglypuff]":
+                    Jigglypuff();
+                    break;
+                case "[Snorlax]":
+                    Snorlax();
+                    break;
+                case "[Slaking]":
+                    Slaking();
+                    break;
+                case "[Ghastly]":
+                    Ghastly();
+                    break;
+                case "[Probopass]":
+                    Probopass();
+                    break;
+                case "[Squirtle]":
+                    Squirtle();
+                    break;
+                case "[Popplio]":
+                    Popplio();
+                    break;
+                case "[Machoke]":
+                    Machoke();
+                    break;
+                case "[Leafeon]":
+                    Leafeon();
+                    break;
+                case "[Meowth]":
+                    Meowth();
+                    break;
+                case "[Arceus]":
+                    KIKut();
+                    break;
+                case "[Pantifrost]":
+                    Pantifrost();
+                    break;
+                case "[Bisasam]":
+                    Bisasam();
+                    break;
+                case "[Alolan Dugtrio]":
+                    Dugtrio();
+                    break;
+                case "[Maboyystiff]":
+                    Maboyystiff();
+                    break;
+                case "[Swalot]":
+                    Swalot();
+                    break;
+                default:
+                    Console.WriteLine("(no ASCII art available for this Pokémon)");
+                    break;
+            }
+        }
 
         public void Slaking()
         {

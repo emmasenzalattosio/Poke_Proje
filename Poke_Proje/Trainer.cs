@@ -102,8 +102,10 @@ namespace Poke_Proje
                 return;
             }
 
+            Ascii ascii = new Ascii();
             foreach (Pokemon p in ass_poke)
             {
+                ascii.ShowArt(p.Name);
                 ConsoleUI.WriteCentered(p.ShowStatus());
                 Console.WriteLine();
             }
