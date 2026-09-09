@@ -14,10 +14,11 @@ namespace Poke_Proje
             rnd = new Random();
             evilQuotes = new string[]
             {
-                "Prepare for trouble, make it double!!",
-                "To protect the world from devastation... lol jk we stealin yo shit",
-                "Team WH blast off at the speed of light, surrender now or prepare to fight",
-                "Your pokeon are ours now bestie"
+                "Wir wollen über die Erde regieren!!! Und unseren eigene Staat Kreiren!!!",
+                "Liebe und Wahrheit verurteilen wir!!! Mehr und Mehr Macht, das wollen wir!!!",
+                "Tommy und Heidi",
+                "Team WH so schnell wie das Licht, Gebt lieber auf und bekämpft uns nicht!!!",
+                "Miauz Genau!!!"
             };
         }
 
@@ -25,14 +26,14 @@ namespace Poke_Proje
         {
             List<string> lines = new List<string>
             {
-                "!!! TEAM WH APPEARED OUTTA NOWHERE !!!",
+                "!!! TEAM WH IST AUS DEM NICHTS AUFGETAUCHT !!!",
                 $"{Name}: \"{evilQuotes[rnd.Next(evilQuotes.Length)]}\""
             };
 
             if (!victim.HasPokemon())
             {
-                lines.Add($"{Name}: \"Bruh you broke, aint got no pokeon to steal lmao\"");
-                lines.Add("*Team WH walks away disappointed*");
+                lines.Add($"{Name}: \"Bruh du bist broke, nicht mal Pokemon zum klauen hast du\"");
+                lines.Add("*Team WH rennt entäuschent weg*");
                 return lines;
             }
 
@@ -44,12 +45,12 @@ namespace Poke_Proje
             {
                 this.ass_poke.Add(p);
                 p.SetTrainer(this.Name);
-                lines.Add($"{Name} stole {p.Name}!! *yoink*");
+                lines.Add($"{Name} klaut {p.Name}!! *yoink*");
             }
 
             lines.Add(string.Empty);
-            lines.Add($"{Name}: \"Wanna be a real trainer?? Then come get them back!!\"");
-            lines.Add($"{Name}: \"But first you gotta git gud lol\"");
+            lines.Add($"{Name}: \Willst du ein echter trainer sein?? Dann komm und hol sie dir zurück!!\"");
+            lines.Add($"{Name}: \"Aber vorher Git Gud lol!\"");
             return lines;
         }
     }

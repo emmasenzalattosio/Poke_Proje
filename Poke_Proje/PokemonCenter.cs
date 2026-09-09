@@ -28,7 +28,7 @@ namespace Poke_Proje
         {
             if (pokemon == null)
             {
-                Console.WriteLine("No Pokémon to add.");
+                Console.WriteLine("Kein Pokemon hinzugefügt.");
                 return;
             }
 
@@ -40,18 +40,18 @@ namespace Poke_Proje
         {
             if (trainer == null)
             {
-                Console.WriteLine("No trainer to add.");
+                Console.WriteLine("Kein Trainer hinzugefügt.");
                 return;
             }
 
             trainerList.Add(trainer);
-            ConsoleUI.WriteCentered($"Trainer {trainer.Name} was added.");
+            ConsoleUI.WriteCentered($"Trainer {trainer.Name} wurde hinzugefügt.");
             Console.Clear();
         }
 
         public void ShowAllPokemon()
         {
-            Console.WriteLine("All Pokémon in the Center: \n");
+            Console.WriteLine("Alle Pokemon im Center: \n");
             foreach (Pokemon p in pokemonList)
             {
                 Console.WriteLine(p.ShowStatus());
@@ -60,7 +60,7 @@ namespace Poke_Proje
 
         public void ShowAllTrainers()
         {
-            ConsoleUI.WriteCentered("All Trainers: ");
+            ConsoleUI.WriteCentered("Alle Trainer: ");
             Console.WriteLine();
             foreach (Trainer t in trainerList)
             {
