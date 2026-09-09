@@ -18,73 +18,73 @@ namespace Poke_Proje
         {
             Center = new PokemonCenter();
 
-            Trainer Holger = new Trainer("Holger - Bakachan");
+            Trainer Holger = new Trainer("Holger - Bakachan    ");
             Center.AddTrainer(Holger);
 
-            Trainer Aman = new Trainer("Aman - Oniiiichan");
+            Trainer Aman = new Trainer("Aman - Oniiiichan    ");
             Center.AddTrainer(Aman);
 
-            Trainer Hasan = new Trainer("Hasan - Senpai");
+            Trainer Hasan = new Trainer("Hasan - Senpai       ");
             Center.AddTrainer(Hasan);
 
-            Trainer Jens = new Trainer("Jens - Bakachan");
+            Trainer Jens = new Trainer("Jens - Bakachan      ");
             Center.AddTrainer(Jens);
 
-            Trainer Chris = new Trainer("Chris - Oniisaaan");
+            Trainer Chris = new Trainer("Chris - Oniisaaan    ");
             Center.AddTrainer(Chris);
 
-            Trainer Vanessa = new Trainer("Vanessa - Heika");
+            Trainer Vanessa = new Trainer("Vanessa - Heika      ");
             Center.AddTrainer(Vanessa);
 
-            Trainer Emma = new Trainer("Emma Oneechan");
+            Trainer Emma = new Trainer("Emma - Oneechan      ");
             Center.AddTrainer(Emma);
 
-            Trainer Josi = new Trainer("Josi - Obasan");
+            Trainer Josi = new Trainer("Josi - Obasan        ");
             Center.AddTrainer(Josi);
 
-            Trainer Babak = new Trainer("Babak - Kemonochan");
+            Trainer Babak = new Trainer("Babak - Kemonochan   ");
             Center.AddTrainer(Babak);
 
-            Trainer Mohammed = new Trainer("Mohammed - Henjin");
+            Trainer Mohammed = new Trainer("Mohammed - Henjin    ");
             Center.AddTrainer(Mohammed);
 
-            Trainer Ilia = new Trainer("Ilia - Guru");
+            Trainer Ilia = new Trainer("Ilia - Guru          ");
             Center.AddTrainer(Ilia);
 
-            Trainer Sasha = new Trainer("Sasha - Kakka");
+            Trainer Sasha = new Trainer("Sasha - Kakka        ");
             Center.AddTrainer(Sasha);
 
-            Trainer Raffael = new Trainer("Raffael - Otaku");
+            Trainer Raffael = new Trainer("Raffael - Otaku      ");
             Center.AddTrainer(Raffael);
 
-            Trainer Fabian = new Trainer("Fabian - Rikutsubo");
+            Trainer Fabian = new Trainer("Fabian - Rikutsubo   ");
             Center.AddTrainer(Fabian);
 
-            Trainer Kathy = new Trainer("Kathy - Ikenog");
+            Trainer Kathy = new Trainer("Kathy - Ikenog       ");
             Center.AddTrainer(Kathy);
 
-            Trainer Azzeddine = new Trainer("Azzeddine - Aora");
+            Trainer Azzeddine = new Trainer("Azzeddine - Aora     ");
             Center.AddTrainer(Azzeddine);
 
-            Trainer Daniel = new Trainer("Daniel - Senpai");
+            Trainer Daniel = new Trainer("Daniel - Senpai      ");
             Center.AddTrainer(Daniel);
 
-            Trainer Marcel = new Trainer("Marcel - Chibi");
+            Trainer Marcel = new Trainer("Marcel - Chibi       ");
             Center.AddTrainer(Marcel);
 
-            Trainer Roman = new Trainer("Roman - Denka");
+            Trainer Roman = new Trainer("Roman - Denka        ");
             Center.AddTrainer(Roman);
 
-            Trainer Felix = new Trainer("Felix - Tsun-Tsun");
+            Trainer Felix = new Trainer("Felix - Tsun-Tsun    ");
             Center.AddTrainer(Felix);
 
             Trainer Daniel2 = new Trainer("Daniel2 - Sabori-yaro");
             Center.AddTrainer(Daniel2);
 
-            Trainer Sven = new Trainer("Sven - chibikko");
+            Trainer Sven = new Trainer("Sven - Chibikko      ");
             Center.AddTrainer(Sven);
 
-            Trainer Aikut = new Trainer("Aykut - fugo");
+            Trainer Aikut = new Trainer("Aykut - Fugo         ");
             Center.AddTrainer(Aikut);
 
             Console.Clear();
@@ -279,11 +279,12 @@ namespace Poke_Proje
 
         private int ReadNumber(int min, int max)
         {
-            int result;
+            int result; // store user input
 
             while (true)
             {
-                ConsoleUI.WriteCentered($"Enter a number ({min}-{max}): ");
+                ConsoleUI.WriteCentered($"Enter a number ({min}-{max}): "); 
+
                 if (int.TryParse(Console.ReadLine(), out result) && result >= min && result <= max)
                     return result;
 
@@ -295,46 +296,28 @@ namespace Poke_Proje
         {
             List<Pokemon> all = Center.GetAllPokeon();
 
-            if (all.Count == 0)
+            if (all.Count < 2)
             {
                 Console.Clear();
-                ConsoleUI.WriteCenteredScreen("🥊 Kampf gestartet", new[] { "Es ist kein Pokemon im Center zum Kämpfen.", "", "Drück eine taste für weiter..." }, ConsoleColor.Yellow);
+                ConsoleUI.WriteCenteredScreen("🥊 Kampf gestartet",
+                    new[] { "Es ist kein Pokemon im Center zum Kämpfen.", 
+                            "", 
+                            "Drück eine Taste für weiter..." },
+                    ConsoleColor.Yellow);
                 Console.ReadKey(true);
                 return;
             }
-
-            Pokemon fighter;
-
-            if (trainer != null && trainer.ass_poke.Count > 0)
+            // choose fighter from all
+            Console.Clear();
+            List<string> fighterLines = new List<string>();
+            for (int i = 0; i < all.Count; i++)
             {
-                fighter = trainer.ChoosePokemonFromTeam();
-                if (fighter == null)
-                {
-                    return;
-                }
+                fighterLines.Add($"[{i + 1}] {all[i].Name} - HP: {all[i].GetCurrentHp()}/{all[i].GetMaxHp()}");
             }
-            else
-            {
-                Console.Clear();
-                List<string> fighterLines = new List<string>();
-
-
-                for (int i = 0; i < all.Count; i++)
-                {
-
-                    Console.WriteLine($"[{i + 1}] {all[i].Name} - HP: {all[i].GetCurrentHp()}/{all[i].GetMaxHp()}");
-                }
-                ConsoleUI.WriteCenteredScreen("🥊 wähle dein Pokemon", fighterLines, ConsoleColor.Yellow);
-
-                fighter = all[ReadNumber(1, all.Count) - 1];
-            }
+            ConsoleUI.WriteCenteredScreen("🥊 Wähle dein Pokémon", fighterLines, ConsoleColor.Yellow);
+            Pokemon fighter = all[ReadNumber(1, all.Count) - 1];
 
             List<Pokemon> enemyOptions = all.Where(p => p != fighter).ToList();
-            if (enemyOptions.Count == 0)
-            {
-                Console.WriteLine("kein gegnerisches Pokémon verfügbar.");
-                return;
-            }
 
             Console.Clear();
 
@@ -372,7 +355,8 @@ namespace Poke_Proje
                 Console.Clear();
                 stealLines.Add(string.Empty);
                 //stealLines.Add("Press any key to continue...");
-                ConsoleUI.WriteCenteredScreen("🕵️ Team WH's Hinterhalt", stealLines, ConsoleColor.Yellow);
+                WH_Banner();
+                ConsoleUI.WriteCenteredScreen("", stealLines, ConsoleColor.Yellow);
                 Console.ReadKey(true);
                 return;
             }
@@ -384,13 +368,15 @@ namespace Poke_Proje
             stealLines.Add("---> Drück [Y] um für dein Pokemon zu kämpfen, [N] um abzuhauen <---");
 
             Console.Clear();
-            ConsoleUI.WriteCenteredScreen("🕵️ Team WH's Hinterhalt", stealLines, ConsoleColor.Yellow);
+            WH_Banner();
+            ConsoleUI.WriteCenteredScreen("", stealLines, ConsoleColor.Yellow);
             ConsoleKey key = Console.ReadKey(true).Key;
 
             if (key != ConsoleKey.Y)
             {
                 Console.Clear();
-                ConsoleUI.WriteCenteredScreen("🕵️ Team WH's Hinterhalt", new[] { $"{trainer.Name} haut ab, Team WH behält die Beute...", "" }, ConsoleColor.Yellow);
+                WH_Banner();
+                ConsoleUI.WriteCenteredScreen("", new[] { $"{trainer.Name} haut ab, Team WH behält die Beute...", "" }, ConsoleColor.Yellow);
                 Console.ReadKey(true);
                 return;
             }
@@ -400,7 +386,8 @@ namespace Poke_Proje
             if (ownOptions.Count == 0)
             {
                 Console.Clear();
-                ConsoleUI.WriteCenteredScreen("🕵️ Team WH's Hinterhalt", new[] { "Kein Pokemon im Center zum Kämpfen übrig, komm später wieder.", "", "Drücke eine Taste für weiter..." }, ConsoleColor.Yellow);
+                WH_Banner();
+                ConsoleUI.WriteCenteredScreen("", new[] { "Kein Pokemon im Center zum Kämpfen übrig, komm später wieder.", "", "Drücke eine Taste für weiter..." }, ConsoleColor.Yellow);
                 Console.ReadKey(true);
                 return;
             }
@@ -432,14 +419,20 @@ namespace Poke_Proje
             }
             else
             {
+                Console.WriteLine();
                 outcomeLines.Add("Team WH behält dein Pokemon erstmal, git gud und versuch es nochmal.");
             }
 
             outcomeLines.Add(string.Empty);
-            outcomeLines.Add("Drück eine taste für weiter...");
+            //outcomeLines.Add("Drück eine taste für weiter...");
 
             Console.Clear();
-            ConsoleUI.WriteCenteredScreen("🕵️ Ergebnis für Hinterhalt", outcomeLines, ConsoleColor.Yellow);
+            ConsoleUI.WriteCentered(@"   ____             __        _       ____  _       __ ___      __          __        ____ 
+  / __/______ ____ / /  ___  (_)__   / _(_)(_)___  / // (_)__  / /____ ____/ /  ___ _/ / /_
+ / _// __/ _ `/ -_) _ \/ _ \/ (_-<  / _/ // / __/ / _  / / _ \/ __/ -_) __/ _ \/ _ `/ / __/
+/___/_/  \_, /\__/_.__/_//_/_/___/ /_/ \_,_/_/   /_//_/_/_//_/\__/\__/_/ /_//_/\_,_/_/\__/ 
+        /___/                                                                              ");
+            ConsoleUI.WriteCenteredScreen("", outcomeLines, ConsoleColor.Yellow);
             Console.ReadKey(true);
 
 
@@ -563,5 +556,14 @@ namespace Poke_Proje
             Console.ReadKey(true);
         }
 
+
+        public static void WH_Banner()
+        {
+            ConsoleUI.WriteCentered(@"     ______                 _      ____ ___        __ ___      __          __        ____ 
+    /_  __/__ ___ ___ _    | | /| / / // ( )___   / // (_)__  / /____ ____/ /  ___ _/ / /_
+     / / / -_) _ `/  ' \   | |/ |/ / _  /|/(_-<  / _  / / _ \/ __/ -_) __/ _ \/ _ `/ / __/
+    /_/  \__/\_,_/_/_/_/   |__/|__/_//_/  /___/ /_//_/_/_//_/\__/\__/_/ /_//_/\_,_/_/\__/ 
+                                                                                          ");
+        }
     }
 }

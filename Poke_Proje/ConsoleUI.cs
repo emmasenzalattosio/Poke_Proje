@@ -84,36 +84,39 @@ namespace Poke_Proje
             }
         }
 
-        public static void WriteTwoColumns(
-        List<string> leftLines,
-        List<string> rightLines,
-        int leftWidth = 40,
-        int gap = 4,
-        int leftPad = 2,
-        int rightPad = 0)
+        public static void WriteThreeColumns(
+       List<string> col1Lines,
+       List<string> col2Lines,
+       List<string> col3Lines,
+       int col1Width = 35,
+       int col2Width = 35,
+       int gap = 4,
+       int leftPad = 2,
+       int artOffset = 0)
         {
-            int rowCount = Math.Max(leftLines.Count, rightLines.Count);
+            int rowCount = Math.Max(col1Lines.Count, Math.Max(col2Lines.Count, col3Lines.Count));
 
             for (int i = 0; i < rowCount; i++)
             {
-                string left = i < leftLines.Count ? leftLines[i] : "";
-                string right = i < rightLines.Count ? rightLines[i] : "";
+                string c1 = i < col1Lines.Count ? col1Lines[i] : "";
+                string c2 = i < col2Lines.Count ? col2Lines[i] : "";
+                string c3 = i < col3Lines.Count ? col3Lines[i] : "";
 
-                // Truncate or pad the left column so the right one always lines up
-                if (left.Length > leftWidth)
-                    left = left.Substring(0, leftWidth);
-                else
-                    left = left.PadRight(leftWidth);
+                c1 = c1.Length > col1Width ? c1.Substring(0, col1Width) : c1.PadRight(col1Width);
+                c2 = c2.Length > col2Width ? c2.Substring(0, col2Width) : c2.PadRight(col2Width);
 
                 string line =
                     new string(' ', leftPad) +
-                    left +
+                    c1 +
                     new string(' ', gap) +
-                    new string(' ', rightPad) +
-                    right;
+                    c2 +
+                    new string(' ', gap) +
+                    new string(' ', artOffset) + 
+                    c3;
 
                 Console.WriteLine(line);
             }
         }
     }
 }
+

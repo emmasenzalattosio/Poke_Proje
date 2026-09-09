@@ -5,6 +5,7 @@ namespace Poke_Proje
 {
     public class PokemonCenter
     {
+        // stores all poke - trainer in center
         private List<Pokemon> pokemonList;
         private List<Trainer> trainerList;
 
@@ -38,11 +39,6 @@ namespace Poke_Proje
 
         public void AddTrainer(Trainer trainer)
         {
-            if (trainer == null)
-            {
-                Console.WriteLine("Kein Trainer hinzugefügt.");
-                return;
-            }
 
             trainerList.Add(trainer);
             ConsoleUI.WriteCentered($"Trainer {trainer.Name} wurde hinzugefügt.");
@@ -60,63 +56,65 @@ namespace Poke_Proje
 
         public void ShowAllTrainers()
         {
-            ConsoleUI.WriteCentered("Alle Trainer: ");
-            Console.WriteLine();
-            foreach (Trainer t in trainerList)
-            {
-                ConsoleUI.WriteCentered($"> {t.Name} ({t.ass_poke.Count} Pokémon)");
-            }
-        }
-
-            leftlines.Add("All Trainers: ");
+            // left lines - buffer (instead of direct print)
+            List<string> leftlines = new List<string>();
+            leftlines.Add("Alle Trainer:");
             leftlines.Add("");
 
+            // Loop through trainer - add header (name + numb pok)
+            // pokeon name under
             foreach (Trainer t in trainerList)
             {
-                leftlines.Add($"         > {t.Name} ({t.ass_poke.Count} Pokémon)");
+                leftlines.Add($"> {t.Name} ({t.ass_poke.Count} Pokémon)");
                 for (int i = 0; i < t.ass_poke.Count; i++)
                 {
-
-                    leftlines.Add(t.ass_poke[i].Name);
-
+                    leftlines.Add($"   - {t.ass_poke[i].Name}");
                 }
                 leftlines.Add("");
             }
 
+            // take lines count and split two 
+            // ceieling for odd counts so don´t lose a line
+            int half = (int)Math.Ceiling(leftlines.Count / 2.0);
+            List<string> col1 = leftlines.Take(half).ToList();
+            List<string> col2 = leftlines.Skip(half).ToList();
+
             List<string> rightlines = @"
-                      .:======-.                      
-               +*********#********+.                
-           :*#************************-             
-         *#*****#********#******-      .=           
-       %***********************-          #         
-     =#************#***********-           =+       
-    ************#********#******            *#      
-   +*****************************=          +**     
-  +***********#@%%%%%%@@************       +***+    
- :#*********#%%%%*  =%%%%@*****#***************#-   
- #*********%@%#  -  .. *%%%#***#*****#**********#   
-.#*******#%@%# =      - @%%%%%%%%%%@@%#**********-  
-=***#@@%%%%%%+          +%%%%%%%%%%%%%%%%%@@##***+  
-#@@%%%%%%%%%%@ :      : @%%%%%%%%%%%%%%%%%%%%%%@@%  
-*%%%%%%%%%@@%%@- .    .%%%%     -==-=#@@%%%%%%@@@%  
-+%%%@*::     #%%%@%#@%%%@:               +**@@@@@*  
- *             .*@@@@@=.                 :::::-+%:  
- -                                      ::::::::+   
- ..                                    ::::::::*:   
-  -.                                  ::::::::+-    
-   =                                :::::::::=+     
-    -+                            ::::::::::=+      
-      @:.                      .:::::::::::@        
-        @-::                ::::::::::::-%.         
-          %+-:::::::::::::::::::::::::=#.           
-            -#=-::::::::::::::::::-=#=              
-                =#*+===----====*#=                  "
-     .Split('\n')
-     .ToList();
+┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
+┃                        .:======-.                       ┃
+┃                 +*********#********+.                   ┃
+┃             :*#************************-                ┃
+┃           *#*****#********#******-      .=              ┃
+┃         %***********************-          #            ┃
+┃       =#************#***********-           =+          ┃
+┃      ************#********#******            *#         ┃
+┃     +*****************************=          +**        ┃
+┃    +***********#@%%%%%%@@************       +***+       ┃
+┃   :#*********#%%%%*  =%%%%@*****#***************#-      ┃
+┃   #*********%@%#  -  .. *%%%#***#*****#**********#      ┃
+┃  .#*******#%@%# =      - @%%%%%%%%%%@@%#**********-     ┃
+┃  =***#@@%%%%%%+          +%%%%%%%%%%%%%%%%%@@##***+     ┃
+┃  #@@%%%%%%%%%%@ :      : @%%%%%%%%%%%%%%%%%%%%%%@@%     ┃
+┃  *%%%%%%%%%@@%%@- .    .%%%%     -==-=#@@%%%%%%@@@%     ┃
+┃  +%%%@*::     #%%%@%#@%%%@:               +**@@@@@*     ┃
+┃   *             .*@@@@@=.                 :::::-+%:     ┃
+┃   -                                      ::::::::+      ┃
+┃   ..                                    ::::::::*:      ┃
+┃    -.                                  ::::::::+-       ┃
+┃     =                                :::::::::=+        ┃
+┃      -+                            ::::::::::=+         ┃
+┃        @:.                      .:::::::::::@           ┃
+┃          @-::                ::::::::::::-%.            ┃
+┃            %+-:::::::::::::::::::::::::=#.              ┃
+┃              -#=-::::::::::::::::::-=#=                 ┃
+┃                  =#*+===----====*#=                     ┃
+┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛"
+                .Split('\n')
+                .Where(line => !string.IsNullOrWhiteSpace(line)) // optional: remove empty first line
+                .ToList();
 
-            ConsoleUI.WriteTwoColumns(leftlines, rightlines, leftWidth: 70, gap: 40);
+            ConsoleUI.WriteThreeColumns(col1, col2, rightlines, col1Width: 25, col2Width: 25, gap: 4, artOffset: 35);
         }
-
 
         public void AssignPokeon(Pokemon pokemon, Trainer trainer)
         {
@@ -133,14 +131,6 @@ namespace Poke_Proje
             pokemon.Heal();
         }
 
-        //public void HealPokemon(string name)
-        //{
-        //    Pokemon found = SearchPokemon(name);
-        //    if (found != null)
-        //    {
-        //        found.Heal();
-        //    }
-        //}
 
         public bool RemovePokemon(Pokemon pokemon)
         {

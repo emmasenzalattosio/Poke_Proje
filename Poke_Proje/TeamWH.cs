@@ -6,20 +6,20 @@ namespace Poke_Proje
 {
     public class TeamWH : Trainer
     {
-        private string[] evilQuotes;
-        private Random rnd;
+        //private string[] evilQuotes;
+        //private Random rnd;
 
         public TeamWH(string name) : base(name)
         {
-            rnd = new Random();
-            evilQuotes = new string[]
-            {
-                "Wir wollen über die Erde regieren!!! Und unseren eigene Staat Kreiren!!!",
-                "Liebe und Wahrheit verurteilen wir!!! Mehr und Mehr Macht, das wollen wir!!!",
-                "Tommy und Heidi",
-                "Team WH so schnell wie das Licht, Gebt lieber auf und bekämpft uns nicht!!!",
-                "Miauz Genau!!!"
-            };
+            //    //rnd = new Random();
+            //    evilQuotes = new string[]
+            //    {
+            //        "Wir wollen über die Erde regieren!!! Und unseren eigene Staat Kreiren!!!",
+            //        "Liebe und Wahrheit verurteilen wir!!! Mehr und Mehr Macht, das wollen wir!!!",
+            //        "Tommy und Heidi",
+            //        "Team WH so schnell wie das Licht, Gebt lieber auf und bekämpft uns nicht!!!",
+            //        "Miauz Genau!!!"
+            //    };
         }
 
         public List<string> StealPokemon(Trainer victim)
@@ -27,7 +27,19 @@ namespace Poke_Proje
             List<string> lines = new List<string>
             {
                 "!!! TEAM WH IST AUS DEM NICHTS AUFGETAUCHT !!!",
-                $"{Name}: \"{evilQuotes[rnd.Next(evilQuotes.Length)]}\""
+                $">> {Name} <<",
+                "",
+                "Wir wollen über die Erde regieren!!! Und unseren eigene Staat Kreiren!!!",
+                "",
+                "Liebe und Wahrheit verurteilen wir!!! Mehr und Mehr Macht, das wollen wir!!!",
+                "",
+                "Tommy und Heidi",
+                "",
+                "Team WH so schnell wie das Licht, Gebt lieber auf und bekämpft uns nicht!!!",
+                "",
+                "Miauz Genau!!!",
+                "",
+                "",
             };
 
             if (!victim.HasPokemon())
@@ -49,7 +61,7 @@ namespace Poke_Proje
             }
 
             lines.Add(string.Empty);
-            lines.Add($"{Name}: \Willst du ein echter trainer sein?? Dann komm und hol sie dir zurück!!\"");
+            lines.Add($"{Name}: \"Willst du ein echter trainer sein?? Dann komm und hol sie dir zurück!!\"");
             lines.Add($"{Name}: \"Aber vorher Git Gud lol!\"");
             return lines;
         }

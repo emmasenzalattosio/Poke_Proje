@@ -7,6 +7,8 @@ namespace Poke_Proje
 {
     public class NiceCute
     {
+        //readonly - prevents unwanted reassignments (protection) 
+        //no creation of new objekts (gg can modify them tho)
         private readonly PokemonCenter Center;
         private readonly Arena Arena;
 
@@ -22,12 +24,14 @@ namespace Poke_Proje
             Console.Clear();
             DrawBanner();
 
-            Trainer? selectedTrainer = SelectTrainer();
+            Trainer? selectedTrainer = SelectTrainer(); // calls trainer selec and stores
+            // check if no trainer then stops all
             if (selectedTrainer == null)
             {
                 return;
             }
 
+            // if trainer exists then move to 2nd menu
             ShowActionMenu(selectedTrainer);
         }
 
@@ -96,8 +100,7 @@ namespace Poke_Proje
             string[] options =
             {
                 "👀 Pokemon Anschauen",
-                "🔍 Pokemon Suchen",
-                "🧑‍🤝‍🧑 Trainer ANzeigen",
+                "🧑‍🤝‍🧑 Trainer Anzeigen",
                 "⚔️ Kämpfen",
                 "💊 Team Heilen",
                 "🕵️ Team WH's Hinterhalt",
@@ -153,63 +156,42 @@ namespace Poke_Proje
                 {
                     switch (selected)
                     {
+      
                         case 0:
                             trainer.ShowPokemon();
-                             
-
                             break;
-
-                        //case 1:
-                            //Console.Clear();
-                            //ConsoleUI.WriteCentered("Enter the name of the Pokémon you want to search:");
-                            //string searchName = Console.ReadLine() ?? string.Empty;
-                            //Center.SearchPokemon();
-                            //ConsoleUI.WriteCentered("\nPress any key to go back to the main menu...");
-                            //Console.ReadKey(true);
-                            //break;
 
                         case 1:
-                            Console.Clear();
-                            ConsoleUI.WriteCentered("Enter the name of the Pokémon you want to search:");
-                            string searchName = Console.ReadLine() ?? string.Empty;
-                            Center.SearchPokemon(searchName);
-                            ConsoleUI.WriteCentered("\nPress any key to go back to the main menu...");
-                            Console.ReadKey(true);
-                            break;
-
-                        case 2:
                             Console.Clear();
                             Center.ShowAllTrainers();
                             ConsoleUI.WriteCentered("\nPress any key to go back to the main menu...");
                             Console.ReadKey(true);
                             break;
 
-                        case 3:
+                        case 2:
                             Arena.StartBattle(trainer);
                             ConsoleUI.WriteCentered("\nPress any key to go back to the main menu...");
                             Console.ReadKey(true);
                             break;
 
-                        case 4:
+                        case 3:
                             trainer.HealTeam();
                             ConsoleUI.WriteCentered("\nPress any key to go back to the main menu...");
                             Console.ReadKey(true);
                             break;
 
-                        case 5:
+                        case 4:
                             Console.Clear();
                             Arena.RocketEncounter(trainer);
                             ConsoleUI.WriteCentered("\nDrück eine Taste für weiter...");
+
                             Console.ReadKey(true);
 
-                            Arena arena = new Arena();
-                            NiceCute menu = new NiceCute(arena.Center, arena);
-                            menu.Start();
+                            ShowActionMenu(trainer);
                             return;
 
                         case 5:
                             Console.Clear();
-
                             Trainer newTrainer = SelectTrainer();
                             ShowActionMenu(newTrainer);
                             return;
