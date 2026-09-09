@@ -38,7 +38,7 @@ namespace Poke_Proje
 
             if (trainers.Count == 0)
             {
-                ConsoleUI.WriteCentered("No trainers were found in the Pokemon Center.");
+                ConsoleUI.WriteCentered("Es wurde kein Trainer im Pokemon Center gefunden.");
                 Console.ReadKey(true);
                 return null;
             }
@@ -95,13 +95,14 @@ namespace Poke_Proje
         {
             string[] options =
             {
-                "👀 View Pokémon",
-                "🧑‍🤝‍🧑 Show Trainers",
-                "⚔️ Start Battle",
-                "💊 Heal Team",
-                "🕵️ Team WH Ambush",
-                "🙋🏻 Choose trainer again",
-                "🚪 Exit"
+                "👀 Pokemon Anschauen",
+                "🔍 Pokemon Suchen",
+                "🧑‍🤝‍🧑 Trainer ANzeigen",
+                "⚔️ Kämpfen",
+                "💊 Team Heilen",
+                "🕵️ Team WH's Hinterhalt",
+                "🙋🏻 Neuen Trainer auswählen",
+                "🚪 Verlassen"
             };
             
 
@@ -169,27 +170,36 @@ namespace Poke_Proje
 
                         case 1:
                             Console.Clear();
-                            Center.ShowAllTrainers();
+                            ConsoleUI.WriteCentered("Enter the name of the Pokémon you want to search:");
+                            string searchName = Console.ReadLine() ?? string.Empty;
+                            Center.SearchPokemon(searchName);
                             ConsoleUI.WriteCentered("\nPress any key to go back to the main menu...");
                             Console.ReadKey(true);
                             break;
 
                         case 2:
-                            Arena.StartBattle(trainer);
+                            Console.Clear();
+                            Center.ShowAllTrainers();
                             ConsoleUI.WriteCentered("\nPress any key to go back to the main menu...");
                             Console.ReadKey(true);
                             break;
 
                         case 3:
-                            trainer.HealTeam();
+                            Arena.StartBattle(trainer);
                             ConsoleUI.WriteCentered("\nPress any key to go back to the main menu...");
                             Console.ReadKey(true);
                             break;
 
                         case 4:
+                            trainer.HealTeam();
+                            ConsoleUI.WriteCentered("\nPress any key to go back to the main menu...");
+                            Console.ReadKey(true);
+                            break;
+
+                        case 5:
                             Console.Clear();
                             Arena.RocketEncounter(trainer);
-                            ConsoleUI.WriteCentered("\nPress any key to go back to the main menu...");
+                            ConsoleUI.WriteCentered("\nDrück eine Taste für weiter...");
                             Console.ReadKey(true);
 
                             Arena arena = new Arena();
@@ -206,7 +216,7 @@ namespace Poke_Proje
 
                         case 6:
                             Console.Clear();
-                            ConsoleUI.WriteCentered("Goodbye, trainer! See you at the next battle!");
+                            ConsoleUI.WriteCentered("Auf Wiedersehen, trainer! Wir sehen uns beim nächsten Kampf!");
                             Console.ReadKey(true);
                             return;
                     }

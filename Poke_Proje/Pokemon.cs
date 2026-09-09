@@ -50,7 +50,7 @@ namespace Poke_Proje
         {
             if (attacks.Count >= 4)
             {
-                Console.WriteLine($"{Name} already knows 4 attacks, chill brudi");
+                Console.WriteLine($"{Name} kennt schon 4 Attacken, chill brudi");
                 return;
             }
 
@@ -60,7 +60,7 @@ namespace Poke_Proje
         public int Attack(Pokemon p2, Attack attack)
         {
             Console.WriteLine();
-            Console.WriteLine($"{Name} uses {attack.Name} to annihilate {p2.Name}");
+            Console.WriteLine($"{Name} benutzt {attack.Name} Vernichtet {p2.Name}");
             return attack.Damage;
         }
 
@@ -70,7 +70,7 @@ namespace Poke_Proje
             HP -= damage;
             if (HP < 0) HP = 0;
 
-            Console.WriteLine($"{Name} took {damage} damage. Current HP: {HP}/{MaxHP}");
+            Console.WriteLine($"{Name} bekommt {damage} Schaden. Aktuelle HP: {HP}/{MaxHP}");
         }
 
         public bool IsDefeated()
@@ -81,7 +81,7 @@ namespace Poke_Proje
         public void Heal()
         {
             HP = MaxHP;
-            Console.WriteLine($"{Name} has been fully healed! HP: {HP}/{MaxHP}");
+            Console.WriteLine($"{Name} wurde voll geheilt! HP: {HP}/{MaxHP}");
         }
 
         public string ShowStatus()

@@ -45,46 +45,46 @@ namespace Poke_Proje
             Trainer Babak = new Trainer("Babak - Kemonochan");
             Center.AddTrainer(Babak);
 
-            Trainer Mohammed = new Trainer("Mohammed ");
+            Trainer Mohammed = new Trainer("Mohammed - Henjin");
             Center.AddTrainer(Mohammed);
 
-            Trainer Ilia = new Trainer("Ilia      ");
+            Trainer Ilia = new Trainer("Ilia - Guru");
             Center.AddTrainer(Ilia);
 
-            Trainer Sasha = new Trainer("Sasha - Kakkachan");
+            Trainer Sasha = new Trainer("Sasha - Kakka");
             Center.AddTrainer(Sasha);
 
-            Trainer Raffael = new Trainer("Raffael   ");
+            Trainer Raffael = new Trainer("Raffael - Otaku");
             Center.AddTrainer(Raffael);
 
-            Trainer Fabian = new Trainer("Fabian    ");
+            Trainer Fabian = new Trainer("Fabian - Rikutsubo");
             Center.AddTrainer(Fabian);
 
-            Trainer Kathy = new Trainer("Kathy     ");
+            Trainer Kathy = new Trainer("Kathy - Ikenog");
             Center.AddTrainer(Kathy);
 
-            Trainer Azzeddine = new Trainer("Azzeddine ");
+            Trainer Azzeddine = new Trainer("Azzeddine - Aora");
             Center.AddTrainer(Azzeddine);
 
-            Trainer Daniel = new Trainer("Daniel    ");
+            Trainer Daniel = new Trainer("Daniel - Senpai");
             Center.AddTrainer(Daniel);
 
-            Trainer Marcel = new Trainer("Marcel    ");
+            Trainer Marcel = new Trainer("Marcel - Chibi");
             Center.AddTrainer(Marcel);
 
-            Trainer Roman = new Trainer("Roman - Denkachan");
+            Trainer Roman = new Trainer("Roman - Denka");
             Center.AddTrainer(Roman);
 
-            Trainer Felix = new Trainer("Felix     ");
+            Trainer Felix = new Trainer("Felix - Tsun-Tsun");
             Center.AddTrainer(Felix);
 
-            Trainer Daniel2 = new Trainer("Daniel2   ");
+            Trainer Daniel2 = new Trainer("Daniel2 - Sabori-yaro");
             Center.AddTrainer(Daniel2);
 
-            Trainer Sven = new Trainer("Sven      ");
+            Trainer Sven = new Trainer("Sven - chibikko");
             Center.AddTrainer(Sven);
 
-            Trainer Aikut = new Trainer("Aykut     ");
+            Trainer Aikut = new Trainer("Aykut - fugo");
             Center.AddTrainer(Aikut);
 
             Console.Clear();
@@ -298,7 +298,7 @@ namespace Poke_Proje
             if (all.Count == 0)
             {
                 Console.Clear();
-                ConsoleUI.WriteCenteredScreen("🥊 Start Battle", new[] { "There are no Pokémon in the center to battle.", "", "Press any key to continue..." }, ConsoleColor.Yellow);
+                ConsoleUI.WriteCenteredScreen("🥊 Kampf gestartet", new[] { "Es ist kein Pokemon im Center zum Kämpfen.", "", "Drück eine taste für weiter..." }, ConsoleColor.Yellow);
                 Console.ReadKey(true);
                 return;
             }
@@ -324,7 +324,7 @@ namespace Poke_Proje
 
                     Console.WriteLine($"[{i + 1}] {all[i].Name} - HP: {all[i].GetCurrentHp()}/{all[i].GetMaxHp()}");
                 }
-                ConsoleUI.WriteCenteredScreen("🥊 Choose your fighter", fighterLines, ConsoleColor.Yellow);
+                ConsoleUI.WriteCenteredScreen("🥊 wähle dein Pokemon", fighterLines, ConsoleColor.Yellow);
 
                 fighter = all[ReadNumber(1, all.Count) - 1];
             }
@@ -332,7 +332,7 @@ namespace Poke_Proje
             List<Pokemon> enemyOptions = all.Where(p => p != fighter).ToList();
             if (enemyOptions.Count == 0)
             {
-                Console.WriteLine("No enemy Pokémon available.");
+                Console.WriteLine("kein gegnerisches Pokémon verfügbar.");
                 return;
             }
 
@@ -354,7 +354,7 @@ namespace Poke_Proje
                 ConsoleUI.WriteCentered($"[{i + 1}] {enemyOptions[i].Name} - HP: {enemyOptions[i].GetCurrentHp()}/{enemyOptions[i].GetMaxHp()}");
             }
 
-            ConsoleUI.WriteCenteredScreen("🎯 Choose your enemy", enemyLines, ConsoleColor.Yellow);
+            ConsoleUI.WriteCenteredScreen("🎯 Wähle deinen Gegner", enemyLines, ConsoleColor.Yellow);
 
             Pokemon enemy = enemyOptions[ReadNumber(1, enemyOptions.Count) - 1];
 
@@ -372,7 +372,7 @@ namespace Poke_Proje
                 Console.Clear();
                 stealLines.Add(string.Empty);
                 //stealLines.Add("Press any key to continue...");
-                ConsoleUI.WriteCenteredScreen("🕵️ Team WH Ambush", stealLines, ConsoleColor.Yellow);
+                ConsoleUI.WriteCenteredScreen("🕵️ Team WH's Hinterhalt", stealLines, ConsoleColor.Yellow);
                 Console.ReadKey(true);
                 return;
             }
@@ -381,16 +381,16 @@ namespace Poke_Proje
             List<Pokemon> stolenPokemon = RocketTeam.ass_poke.Where(p => p != RocketGuard).ToList();
 
             stealLines.Add(string.Empty);
-            stealLines.Add("---> Press [Y] to fight for your pokeon back, [N] to walk away <---");
+            stealLines.Add("---> Drück [Y] um für dein Pokemon zu kämpfen, [N] um abzuhauen <---");
 
             Console.Clear();
-            ConsoleUI.WriteCenteredScreen("🕵️ Team WH Ambush", stealLines, ConsoleColor.Yellow);
+            ConsoleUI.WriteCenteredScreen("🕵️ Team WH's Hinterhalt", stealLines, ConsoleColor.Yellow);
             ConsoleKey key = Console.ReadKey(true).Key;
 
             if (key != ConsoleKey.Y)
             {
                 Console.Clear();
-                ConsoleUI.WriteCenteredScreen("🕵️ Team WH Ambush", new[] { $"{trainer.Name} chickens out for now, Team WH keeps the loot...", "" }, ConsoleColor.Yellow);
+                ConsoleUI.WriteCenteredScreen("🕵️ Team WH's Hinterhalt", new[] { $"{trainer.Name} haut ab, Team WH behält die Beute...", "" }, ConsoleColor.Yellow);
                 Console.ReadKey(true);
                 return;
             }
@@ -400,7 +400,7 @@ namespace Poke_Proje
             if (ownOptions.Count == 0)
             {
                 Console.Clear();
-                ConsoleUI.WriteCenteredScreen("🕵️ Team WH Ambush", new[] { "No pokeon left in the center to fight with, come back later.", "", "Press any key to continue..." }, ConsoleColor.Yellow);
+                ConsoleUI.WriteCenteredScreen("🕵️ Team WH's Hinterhalt", new[] { "Kein Pokemon im Center zum Kämpfen übrig, komm später wieder.", "", "Drücke eine Taste für weiter..." }, ConsoleColor.Yellow);
                 Console.ReadKey(true);
                 return;
             }
@@ -411,7 +411,7 @@ namespace Poke_Proje
             {
                 ownLines.Add($"[{i + 1}] {ownOptions[i].Name} - HP: {ownOptions[i].GetCurrentHp()}/{ownOptions[i].GetMaxHp()}");
             }
-            ConsoleUI.WriteCenteredScreen("🕵️ Choose your fighter to win your pokeon back", ownLines, ConsoleColor.Yellow);
+            ConsoleUI.WriteCenteredScreen("🕵️ Wähle ein Pokemon umd dein Pokemon zurück zu bekommen", ownLines, ConsoleColor.Yellow);
 
             Pokemon championPick = ownOptions[ReadNumber(1, ownOptions.Count) - 1];
             Pokemon rocketFighter = RocketGuard;
@@ -423,7 +423,7 @@ namespace Poke_Proje
 
             if (rocketFighter.IsDefeated() && !championPick.IsDefeated())
             {
-                outcomeLines.Add("You beat Team WH!! Here's your pokeon back.");
+                outcomeLines.Add("du hast Team WH in die Flucht geschlagen!! Hier hast du dein Pokemon zurück.");
                 foreach (Pokemon p in stolenPokemon)
                 {
                     RocketTeam.ass_poke.Remove(p);
@@ -432,14 +432,14 @@ namespace Poke_Proje
             }
             else
             {
-                outcomeLines.Add("Team WH keeps your pokeon for now, git gud and try again.");
+                outcomeLines.Add("Team WH behält dein Pokemon erstmal, git gud und versuch es nochmal.");
             }
 
             outcomeLines.Add(string.Empty);
-            outcomeLines.Add("Press any key to continue...");
+            outcomeLines.Add("Drück eine taste für weiter...");
 
             Console.Clear();
-            ConsoleUI.WriteCenteredScreen("🕵️ Ambush Result", outcomeLines, ConsoleColor.Yellow);
+            ConsoleUI.WriteCenteredScreen("🕵️ Ergebnis für Hinterhalt", outcomeLines, ConsoleColor.Yellow);
             Console.ReadKey(true);
 
 
@@ -465,7 +465,7 @@ namespace Poke_Proje
                 $" {me.GetBattleStatus()}",
                 $" {enemy.GetBattleStatus()}",
                 "",
-                "Press any key to continue..."
+                "Drück eine Taste für weiter..."
             }, ConsoleColor.Yellow);
             Console.ReadKey(true);
 
@@ -481,7 +481,7 @@ namespace Poke_Proje
                 {
                     roundLines.Add(string.Empty);
                 }
-                roundLines.Add($"--- Round {round} ---");
+                roundLines.Add($"--- Runde {round} ---");
                 Console.WriteLine();
                 Console.WriteLine();
                 roundLines.Add($"{me.Name}: HP {me.GetCurrentHp()}/{me.GetMaxHp()}");
@@ -491,7 +491,7 @@ namespace Poke_Proje
                 Console.WriteLine();
                 roundLines.Add(string.Empty);
                 roundLines.Add("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
-                roundLines.Add("Choose your attack:");
+                roundLines.Add("Wähle eine Attacke:");
                 roundLines.Add("");
                 for (int i = 0; i < me.attacks.Count; i++)
                 {
@@ -510,7 +510,7 @@ namespace Poke_Proje
                 Attack playerAttack = me.attacks[ReadNumber(1, me.attacks.Count) - 1];
                 enemy.TakeDamage(playerAttack.Damage);
 
-                turnSummary = new List<string> { $"{me.Name} uses {playerAttack.Name}!" };
+                turnSummary = new List<string> { $"{me.Name} benutzt {playerAttack.Name}!" };
 
                 if (enemy.IsDefeated())
                 {
@@ -522,7 +522,7 @@ namespace Poke_Proje
                 me.TakeDamage(enemyAttack.Damage);
 
                 turnSummary.Add("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
-                turnSummary.Add($"        {enemy.Name} uses {enemyAttack.Name}!            ");
+                turnSummary.Add($"        {enemy.Name} benutzt {enemyAttack.Name}!            ");
                 turnSummary.Add("");
                 turnSummary.Add($"        {me.Name} HP: {me.GetCurrentHp()}/{me.GetMaxHp()}");
                 turnSummary.Add($"        {enemy.Name} HP: {enemy.GetCurrentHp()}/{enemy.GetMaxHp()}");
@@ -543,23 +543,23 @@ namespace Poke_Proje
 
             if (enemy.IsDefeated() && !me.IsDefeated())
             {
-                resultLines.Add($"🏆 {me.Name} wins the battle!");
+                resultLines.Add($"🏆 {me.Name} gewinnt den Kampf!");
             }
             else if (me.IsDefeated() && !enemy.IsDefeated())
             {
-                resultLines.Add($"🏆 {enemy.Name} wins the battle!");
+                resultLines.Add($"🏆 {enemy.Name} gewinnt den Kampf!");
             }
             else
             {
-                resultLines.Add("🤝 It's a draw! Both Pokémon are down.");
+                resultLines.Add("🤝 Unentschieden! beide Pokemon sind Kampfunfähig.");
             }
 
             resultLines.Add($"{me.Name}: HP {me.GetCurrentHp()}/{me.GetMaxHp()}");
             resultLines.Add($"{enemy.Name}: HP {enemy.GetCurrentHp()}/{enemy.GetMaxHp()}");
             resultLines.Add(string.Empty);
-            resultLines.Add("Press any key to continue...");
+            resultLines.Add("Drücke eine Taste für weiter...");
 
-            ConsoleUI.WriteCenteredScreen("🏁 BATTLE RESULT", resultLines, ConsoleColor.Yellow);
+            ConsoleUI.WriteCenteredScreen("🏁 KAMPF ERGEBNIS!", resultLines, ConsoleColor.Yellow);
             Console.ReadKey(true);
         }
 

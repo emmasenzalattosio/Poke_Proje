@@ -77,7 +77,7 @@ namespace Poke_Proje
                     Swalot();
                     break;
                 default:
-                    Console.WriteLine("(no ASCII art available for this Pokémon)");
+                    Console.WriteLine("(keine ASCII art verfügbar für dieses Pokémon)");
                     break;
             }
         }

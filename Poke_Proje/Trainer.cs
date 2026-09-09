@@ -21,11 +21,11 @@ namespace Poke_Proje
 
             while (true)
             {
-                Console.Write($"Enter a number ({min}-{max}): ");
+                Console.Write($"Gib eine Zahl ein ({min}-{max}): ");
                 if (int.TryParse(Console.ReadLine(), out result) && result >= min && result <= max)
                     return result;
 
-                Console.WriteLine("Invalid, try again.");
+                Console.WriteLine("Falsch, versuch es nochmal.");
             }
         }
 
@@ -33,7 +33,7 @@ namespace Poke_Proje
         {
             if (ass_poke.Count == 0)
             {
-                ConsoleUI.WriteCentered($"{Name} has no Pokémon in the team.");
+                ConsoleUI.WriteCentered($"{Name} hat keine Pokemon im Team.");
                 return null;
             }
 
@@ -85,8 +85,8 @@ namespace Poke_Proje
 
             if (ass_poke.Count == 0)
             {
-                ConsoleUI.WriteCentered("No Pokémon assigned yet.");
-                ConsoleUI.WriteCentered("\nPress any key to return to the menu...");
+                ConsoleUI.WriteCentered("Kein Pokemon zugewiesen.");
+                ConsoleUI.WriteCentered("\nDrück eine taste um ins menü zu kommen...");
                 Console.ReadKey(true);
                 return;
             }
@@ -104,7 +104,7 @@ namespace Poke_Proje
                 Console.WriteLine();
             }
 
-            ConsoleUI.WriteCentered("Press any key to return to the menu...");
+            ConsoleUI.WriteCentered("Drück eine Taste um ins Menü zu kommen...");
             Console.ReadKey(true);
         }
 
@@ -112,12 +112,12 @@ namespace Poke_Proje
         {
             if (pokemon == null)
             {
-                Console.WriteLine("No Pokémon was selected for healing.");
+                Console.WriteLine("Es wurde kein Pokemon zum Heilen ausgewählt.");
                 return;
             }
 
             pokemon.Heal();
-            Console.WriteLine($"{Name} healed {pokemon.Name}.");
+            Console.WriteLine($"{Name} wurde geheilt {pokemon.Name}.");
             Console.WriteLine($"HP: {pokemon.GetCurrentHp()}/{pokemon.GetMaxHp()}");
         }
 
@@ -126,11 +126,11 @@ namespace Poke_Proje
         {
             if (ass_poke.Count == 0)
             {
-                ConsoleUI.WriteCentered($"{Name} has no Pokémon to heal.");
+                ConsoleUI.WriteCentered($"{Name} hat kein pokemon zum heilen.");
                 return;
             }
 
-            ConsoleUI.WriteCentered($"{Name} is healing the whole team...");
+            ConsoleUI.WriteCentered($"{Name} heilt das ganze Team...");
             foreach (Pokemon p in ass_poke)
             {
                 p.Heal();
