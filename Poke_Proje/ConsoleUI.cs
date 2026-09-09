@@ -84,5 +84,36 @@ namespace Poke_Proje
             }
         }
 
+        public static void WriteTwoColumns(
+        List<string> leftLines,
+        List<string> rightLines,
+        int leftWidth = 40,
+        int gap = 4,
+        int leftPad = 2,
+        int rightPad = 0)
+        {
+            int rowCount = Math.Max(leftLines.Count, rightLines.Count);
+
+            for (int i = 0; i < rowCount; i++)
+            {
+                string left = i < leftLines.Count ? leftLines[i] : "";
+                string right = i < rightLines.Count ? rightLines[i] : "";
+
+                // Truncate or pad the left column so the right one always lines up
+                if (left.Length > leftWidth)
+                    left = left.Substring(0, leftWidth);
+                else
+                    left = left.PadRight(leftWidth);
+
+                string line =
+                    new string(' ', leftPad) +
+                    left +
+                    new string(' ', gap) +
+                    new string(' ', rightPad) +
+                    right;
+
+                Console.WriteLine(line);
+            }
+        }
     }
 }

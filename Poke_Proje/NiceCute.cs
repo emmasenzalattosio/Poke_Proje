@@ -96,7 +96,6 @@ namespace Poke_Proje
             string[] options =
             {
                 "👀 View Pokémon",
-                "🔍 Search Pokémon",
                 "🧑‍🤝‍🧑 Show Trainers",
                 "⚔️ Start Battle",
                 "💊 Heal Team",
@@ -159,35 +158,35 @@ namespace Poke_Proje
 
                             break;
 
-                        case 1:
-                            Console.Clear();
-                            ConsoleUI.WriteCentered("Enter the name of the Pokémon you want to search:");
-                            string searchName = Console.ReadLine() ?? string.Empty;
-                            Center.SearchPokemon(searchName);
-                            ConsoleUI.WriteCentered("\nPress any key to go back to the main menu...");
-                            Console.ReadKey(true);
-                            break;
+                        //case 1:
+                            //Console.Clear();
+                            //ConsoleUI.WriteCentered("Enter the name of the Pokémon you want to search:");
+                            //string searchName = Console.ReadLine() ?? string.Empty;
+                            //Center.SearchPokemon();
+                            //ConsoleUI.WriteCentered("\nPress any key to go back to the main menu...");
+                            //Console.ReadKey(true);
+                            //break;
 
-                        case 2:
+                        case 1:
                             Console.Clear();
                             Center.ShowAllTrainers();
                             ConsoleUI.WriteCentered("\nPress any key to go back to the main menu...");
                             Console.ReadKey(true);
                             break;
 
-                        case 3:
+                        case 2:
                             Arena.StartBattle(trainer);
                             ConsoleUI.WriteCentered("\nPress any key to go back to the main menu...");
                             Console.ReadKey(true);
                             break;
 
-                        case 4:
+                        case 3:
                             trainer.HealTeam();
                             ConsoleUI.WriteCentered("\nPress any key to go back to the main menu...");
                             Console.ReadKey(true);
                             break;
 
-                        case 5:
+                        case 4:
                             Console.Clear();
                             Arena.RocketEncounter(trainer);
                             ConsoleUI.WriteCentered("\nPress any key to go back to the main menu...");
@@ -198,14 +197,14 @@ namespace Poke_Proje
                             menu.Start();
                             return;
 
-                        case 6:
+                        case 5:
                             Console.Clear();
 
                             Trainer newTrainer = SelectTrainer();
                             ShowActionMenu(newTrainer);
                             return;
 
-                        case 7:
+                        case 6:
                             Console.Clear();
                             ConsoleUI.WriteCentered("Goodbye, trainer! See you at the next battle!");
                             Console.ReadKey(true);

@@ -33,7 +33,7 @@ namespace Poke_Proje
             }
 
             pokemonList.Add(pokemon);
-            
+
         }
 
         public void AddTrainer(Trainer trainer)
@@ -60,43 +60,57 @@ namespace Poke_Proje
 
         public void ShowAllTrainers()
         {
-            ConsoleUI.WriteCentered("All Trainers: ");
-            Console.WriteLine();
+            List<string> leftlines = new List<string>();
+
+            leftlines.Add("All Trainers: ");
+            leftlines.Add("");
+
             foreach (Trainer t in trainerList)
             {
-                ConsoleUI.WriteCentered($"> {t.Name} ({t.ass_poke.Count} Pokémon)");
-            }
-        }
-
-        public Pokemon SearchPokemon(string name)
-        {
-            Pokemon found = null;
-
-            foreach (Pokemon p in pokemonList)
-            {
-                if (p.Name.ToLower() == name.ToLower())
+                leftlines.Add($"         > {t.Name} ({t.ass_poke.Count} Pokémon)");
+                for (int i = 0; i < t.ass_poke.Count; i++)
                 {
-                    found = p;
-                    break;
+
+                    leftlines.Add(t.ass_poke[i].Name);
+
                 }
+                leftlines.Add("");
             }
 
-            if (found != null)
-            {
-                Console.ForegroundColor = ConsoleColor.Green;
-                Console.WriteLine($"\nGefunden {found.Name}");
-                Console.ResetColor();
-                Console.WriteLine(found.ShowStatus());
-            }
-            else
-            {
-                Console.ForegroundColor = ConsoleColor.Red;
-                Console.WriteLine("\nPokemon nicht gefunden");
-                Console.ResetColor();
-            }
+            List<string> rightlines = @"
+                      .:======-.                      
+               +*********#********+.                
+           :*#************************-             
+         *#*****#********#******-      .=           
+       %***********************-          #         
+     =#************#***********-           =+       
+    ************#********#******            *#      
+   +*****************************=          +**     
+  +***********#@%%%%%%@@************       +***+    
+ :#*********#%%%%*  =%%%%@*****#***************#-   
+ #*********%@%#  -  .. *%%%#***#*****#**********#   
+.#*******#%@%# =      - @%%%%%%%%%%@@%#**********-  
+=***#@@%%%%%%+          +%%%%%%%%%%%%%%%%%@@##***+  
+#@@%%%%%%%%%%@ :      : @%%%%%%%%%%%%%%%%%%%%%%@@%  
+*%%%%%%%%%@@%%@- .    .%%%%     -==-=#@@%%%%%%@@@%  
++%%%@*::     #%%%@%#@%%%@:               +**@@@@@*  
+ *             .*@@@@@=.                 :::::-+%:  
+ -                                      ::::::::+   
+ ..                                    ::::::::*:   
+  -.                                  ::::::::+-    
+   =                                :::::::::=+     
+    -+                            ::::::::::=+      
+      @:.                      .:::::::::::@        
+        @-::                ::::::::::::-%.         
+          %+-:::::::::::::::::::::::::=#.           
+            -#=-::::::::::::::::::-=#=              
+                =#*+===----====*#=                  "
+     .Split('\n')
+     .ToList();
 
-            return found;
+            ConsoleUI.WriteTwoColumns(leftlines, rightlines, leftWidth: 70, gap: 40);
         }
+
 
         public void AssignPokeon(Pokemon pokemon, Trainer trainer)
         {
@@ -113,14 +127,14 @@ namespace Poke_Proje
             pokemon.Heal();
         }
 
-        public void HealPokemon(string name)
-        {
-            Pokemon found = SearchPokemon(name);
-            if (found != null)
-            {
-                found.Heal();
-            }
-        }
+        //public void HealPokemon(string name)
+        //{
+        //    Pokemon found = SearchPokemon(name);
+        //    if (found != null)
+        //    {
+        //        found.Heal();
+        //    }
+        //}
 
         public bool RemovePokemon(Pokemon pokemon)
         {
