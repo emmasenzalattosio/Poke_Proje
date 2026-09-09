@@ -62,7 +62,7 @@ namespace Poke_Proje
 
                 for (int i = 0; i < trainers.Count; i++)
                 {
-                    ConsoleUI.WriteCenteredHighlighted($"│ 🙋🏻 {trainers[i].Name} - Chan         │", i == selectedIndex);
+                    ConsoleUI.WriteCenteredHighlighted($"│ 🙋🏻 {trainers[i].Name}                │", i == selectedIndex);
                 }
 
                 ConsoleKey key = Console.ReadKey(true).Key;
@@ -201,8 +201,8 @@ namespace Poke_Proje
                         case 6:
                             Console.Clear();
 
-                            SelectTrainer();
-                            ShowActionMenu(trainer);
+                            Trainer newTrainer = SelectTrainer();
+                            ShowActionMenu(newTrainer);
                             return;
 
                         case 7:

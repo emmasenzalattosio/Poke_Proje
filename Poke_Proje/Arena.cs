@@ -18,40 +18,40 @@ namespace Poke_Proje
         {
             Center = new PokemonCenter();
 
-            Trainer Holger = new Trainer("Holger    ");
+            Trainer Holger = new Trainer("Holger - Bakachan");
             Center.AddTrainer(Holger);
 
-            Trainer Aman = new Trainer("Aman      ");
+            Trainer Aman = new Trainer("Aman - Oniiiichan");
             Center.AddTrainer(Aman);
 
-            Trainer Hasan = new Trainer("Hasan     ");
+            Trainer Hasan = new Trainer("Hasan - Senpai");
             Center.AddTrainer(Hasan);
 
-            Trainer Jens = new Trainer("Jens      ");
+            Trainer Jens = new Trainer("Jens - Bakachan");
             Center.AddTrainer(Jens);
 
-            Trainer Chris = new Trainer("Chris     ");
+            Trainer Chris = new Trainer("Chris - Oniisaaan");
             Center.AddTrainer(Chris);
 
-            Trainer Vanessa = new Trainer("Vanessa   ");
+            Trainer Vanessa = new Trainer("Vanessa - Heika");
             Center.AddTrainer(Vanessa);
 
-            Trainer Emma = new Trainer("Emma      ");
+            Trainer Emma = new Trainer("Emma Oneechan");
             Center.AddTrainer(Emma);
 
-            Trainer Josi = new Trainer("Josi      ");
+            Trainer Josi = new Trainer("Josi - Obasan");
             Center.AddTrainer(Josi);
 
-            Trainer Babak = new Trainer("Babak     ");
+            Trainer Babak = new Trainer("Babak - Kemonochan");
             Center.AddTrainer(Babak);
 
-            Trainer Mohammed = new Trainer("Mohammed  ");
+            Trainer Mohammed = new Trainer("Mohammed ");
             Center.AddTrainer(Mohammed);
 
             Trainer Ilia = new Trainer("Ilia      ");
             Center.AddTrainer(Ilia);
 
-            Trainer Sasha = new Trainer("Sasha     ");
+            Trainer Sasha = new Trainer("Sasha - Kakkachan");
             Center.AddTrainer(Sasha);
 
             Trainer Raffael = new Trainer("Raffael   ");
@@ -72,7 +72,7 @@ namespace Poke_Proje
             Trainer Marcel = new Trainer("Marcel    ");
             Center.AddTrainer(Marcel);
 
-            Trainer Roman = new Trainer("Roman     ");
+            Trainer Roman = new Trainer("Roman - Denkachan");
             Center.AddTrainer(Roman);
 
             Trainer Felix = new Trainer("Felix     ");
