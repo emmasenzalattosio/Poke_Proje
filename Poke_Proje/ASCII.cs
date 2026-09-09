@@ -147,7 +147,6 @@ namespace Poke_Proje
                                                                                                                                               
                                                                                                                                               
                                                                                                                                               
-                                                                                                                                              
                                                                                                                                                 ");
 
         }

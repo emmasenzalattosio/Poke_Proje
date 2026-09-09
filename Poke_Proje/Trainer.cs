@@ -52,7 +52,7 @@ namespace Poke_Proje
  / , _/ _// __ |/ // /\  / /__/ /__/ / _/_/ // (_ / _  / / / /_/_/_/ 
 /_/|_/___/_/ |_/____/ /_/ (_)  (_)  /_/ /___/\___/_//_/ /_/ (_|_|_)  
                                                                      ");
-            ConsoleUI.WriteCentered($"═════════ { Name}'s team ═════════");
+            ConsoleUI.WriteCentered($"═════════ {Name}'s team ═════════");
             Console.WriteLine();
 
             for (int i = 0; i < ass_poke.Count; i++)
@@ -66,24 +66,13 @@ namespace Poke_Proje
 
         public void AssignPokemon(Pokemon pokemon)
         {
-            if (pokemon == null)
-            {
-                ConsoleUI.WriteCentered("No Pokémon was given to the trainer.");
-                return;
-            }
-
-            if (ass_poke.Count >= 5)
-            {
-                ConsoleUI.WriteCentered($"{Name} already has too many pokes, chill mal brudi");
-                return;
-            }
-
             pokemon.SetTrainer(Name);
-            ass_poke.Add(pokemon);           
+            ass_poke.Add(pokemon);
             Console.WriteLine();
         }
 
-        public void ShowPokemon()
+        public void 
+            ShowPokemon()
         {
             Console.Clear();
             Console.WriteLine();
@@ -102,11 +91,16 @@ namespace Poke_Proje
                 return;
             }
 
+
             Ascii ascii = new Ascii();
             foreach (Pokemon p in ass_poke)
             {
                 ascii.ShowArt(p.Name);
+                Console.WriteLine("                                                                  ══════════════════════════════════════════════════════════════════════════════");
                 ConsoleUI.WriteCentered(p.ShowStatus());
+                Console.WriteLine("                                                                  ══════════════════════════════════════════════════════════════════════════════");
+                ConsoleUI.WriteCentered(p.Behavior());
+                Console.WriteLine("                                                                  ══════════════════════════════════════════════════════════════════════════════");
                 Console.WriteLine();
             }
 

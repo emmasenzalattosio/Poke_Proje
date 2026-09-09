@@ -11,11 +11,10 @@ namespace Poke_Proje
         protected int HP { get; set; }
         protected int MaxHP { get; set; }
         protected int AttackDamage { get; set; }
-        protected int Defense { get; set; }
 
         public List<Attack> attacks { get; set; } = new List<Attack>();
 
-        protected Pokemon(string name, string trainer, int level, int hp, int attackDamage, int defense)
+        protected Pokemon(string name, string trainer, int level, int hp, int attackDamage)
         {
             Name = name;
             Trainer = trainer;
@@ -23,7 +22,6 @@ namespace Poke_Proje
             HP = hp;
             MaxHP = hp;
             AttackDamage = attackDamage;
-            Defense = defense;
         }
 
         public abstract string Behavior();
@@ -68,9 +66,7 @@ namespace Poke_Proje
 
         public void TakeDamage(int damage)
         {
-            damage -= Defense;
-            if (damage < 0) damage = 0;
-
+ 
             HP -= damage;
             if (HP < 0) HP = 0;
 
@@ -90,7 +86,7 @@ namespace Poke_Proje
 
         public string ShowStatus()
         {
-            return $"{Name} - {Trainer} - Lvl: [{Level}], HP: {HP}/{MaxHP}, ATK: {AttackDamage}, DEF: {Defense}\n";
+            return $"{Name} - {Trainer} - Lvl: [{Level}], HP: {HP}/{MaxHP}, ATK: {AttackDamage}\n";
         }
     }
 }

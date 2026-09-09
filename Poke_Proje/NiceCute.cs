@@ -101,8 +101,10 @@ namespace Poke_Proje
                 "⚔️ Start Battle",
                 "💊 Heal Team",
                 "🕵️ Team WH Ambush",
+                "🙋🏻 Choose trainer again",
                 "🚪 Exit"
             };
+            
 
             int selected = 0;
 
@@ -153,6 +155,8 @@ namespace Poke_Proje
                     {
                         case 0:
                             trainer.ShowPokemon();
+                             
+
                             break;
 
                         case 1:
@@ -188,9 +192,20 @@ namespace Poke_Proje
                             Arena.RocketEncounter(trainer);
                             ConsoleUI.WriteCentered("\nPress any key to go back to the main menu...");
                             Console.ReadKey(true);
+
+                            Arena arena = new Arena();
+                            NiceCute menu = new NiceCute(arena.Center, arena);
+                            menu.Start();
                             return;
 
                         case 6:
+                            Console.Clear();
+
+                            SelectTrainer();
+                            ShowActionMenu(trainer);
+                            return;
+
+                        case 7:
                             Console.Clear();
                             ConsoleUI.WriteCentered("Goodbye, trainer! See you at the next battle!");
                             Console.ReadKey(true);
