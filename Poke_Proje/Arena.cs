@@ -310,13 +310,18 @@ namespace Poke_Proje
             // choose fighter from all
             Console.Clear();
             List<string> fighterLines = new List<string>();
+            ConsoleUI.WriteCentered(@"  _      ___  _ __   __         __    _        ___       __    __               
+ | | /| / (_)(_) /  / /__   ___/ /__ (_)__    / _ \___  / /___/_/__ _  ___  ___ 
+ | |/ |/ / _ `/ _ \/ / -_) / _  / -_) / _ \  / ___/ _ \/  '_/ -_)  ' \/ _ \/ _ \
+ |__/|__/\_,_/_//_/_/\__/  \_,_/\__/_/_//_/ /_/   \___/_/\_\\__/_/_/_/\___/_//_/
+                ");
             for (int i = 0; i < all.Count; i++)
             {
                 fighterLines.Add($"[{i + 1}] {all[i].Name} - HP: {all[i].GetCurrentHp()}/{all[i].GetMaxHp()}");
             }
-            ConsoleUI.WriteCenteredScreen("🥊 Wähle dein Pokémon", fighterLines, ConsoleColor.Yellow);
-            Pokemon fighter = all[ReadNumber(1, all.Count) - 1];
+            ConsoleUI.WriteCenteredScreen("", fighterLines, ConsoleColor.Yellow);
 
+            Pokemon fighter = all[ReadNumber(1, all.Count) - 1];
             List<Pokemon> enemyOptions = all.Where(p => p != fighter).ToList();
 
             Console.Clear();
@@ -331,13 +336,17 @@ namespace Poke_Proje
  / , _/ _// __ |/ // /\  / /__/ /__/ / _/_/ // (_ / _  / / / /_/_/_/ 
 /_/|_/___/_/ |_/____/ /_/ (_)  (_)  /_/ /___/\___/_//_/ /_/ (_|_|_)  
                                                                      ");
-
+            ConsoleUI.WriteCentered(@"    _      ___  _ __   __         __    _                 _____                     
+    | | /| / (_)(_) /  / /__   ___/ /__ (_)__  ___ ___    / ___/__ ___ ____  ___ ____
+    | |/ |/ / _ `/ _ \/ / -_) / _  / -_) / _ \/ -_) _ \  / (_ / -_) _ `/ _ \/ -_) __/
+    |__/|__/\_,_/_//_/_/\__/  \_,_/\__/_/_//_/\__/_//_/  \___/\__/\_, /_//_/\__/_/   
+                                                                 /___/               ");
+            ConsoleUI.WriteCenteredScreen("", enemyLines, ConsoleColor.Yellow);
             for (int i = 0; i < enemyOptions.Count; i++)
             {
                 ConsoleUI.WriteCentered($"[{i + 1}] {enemyOptions[i].Name} - HP: {enemyOptions[i].GetCurrentHp()}/{enemyOptions[i].GetMaxHp()}");
             }
 
-            ConsoleUI.WriteCenteredScreen("🎯 Wähle deinen Gegner", enemyLines, ConsoleColor.Yellow);
 
             Pokemon enemy = enemyOptions[ReadNumber(1, enemyOptions.Count) - 1];
 

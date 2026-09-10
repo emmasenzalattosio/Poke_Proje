@@ -198,7 +198,13 @@ namespace Poke_Proje
 
                         case 6:
                             Console.Clear();
+                            Console.WriteLine();
+                            Console.WriteLine();
+                            Console.WriteLine();
+                            Console.WriteLine();
+                            ConsoleUI.WriteCentered("┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓");
                             ConsoleUI.WriteCentered("Auf Wiedersehen, trainer! Wir sehen uns beim nächsten Kampf!");
+                            ConsoleUI.WriteCentered("┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛");
                             Console.ReadKey(true);
                             return;
                     }
